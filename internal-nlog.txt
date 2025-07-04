@@ -1,0 +1,241 @@
+2025-04-10 16:06:56.0306 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-10 16:06:56.0739 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-10 16:06:56.0812 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-10 16:06:56.0968 Info Configuration initialized.
+2025-04-10 16:07:42.2418 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-10 16:07:42.2685 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-10 16:07:42.2685 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-10 16:07:42.2879 Info Configuration initialized.
+2025-04-10 16:09:45.4246 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-10 16:09:45.4613 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-10 16:09:45.4681 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-10 16:09:45.4833 Info Configuration initialized.
+2025-04-10 16:11:31.7639 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-10 16:11:31.7943 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-10 16:11:31.8012 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-10 16:11:31.8151 Info Configuration initialized.
+2025-04-12 08:45:50.6184 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 08:45:50.9145 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 08:45:50.9145 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 08:45:50.9575 Info Configuration initialized.
+2025-04-12 09:31:14.1834 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 09:31:14.2678 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 09:31:14.2770 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 09:31:14.3076 Info Configuration initialized.
+2025-04-12 09:32:37.2216 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 09:32:37.2768 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 09:32:37.3036 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 09:32:37.3286 Info Configuration initialized.
+2025-04-12 09:33:48.5544 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 09:33:48.6444 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 09:33:48.6532 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 09:33:48.7369 Info Configuration initialized.
+2025-04-12 09:35:34.3528 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 09:35:34.3850 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 09:35:34.3850 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 09:35:34.4130 Info Configuration initialized.
+2025-04-12 09:41:14.4640 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 09:41:14.5171 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 09:41:14.5379 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 09:41:14.5379 Info Configuration initialized.
+2025-04-12 10:09:47.5516 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:09:47.6303 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:09:47.6462 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:09:47.6719 Info Configuration initialized.
+2025-04-12 10:13:57.2184 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:13:57.2502 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:13:57.2502 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:13:57.2856 Info Configuration initialized.
+2025-04-12 10:19:02.2066 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:19:02.2409 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:19:02.2481 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:19:02.2783 Info Configuration initialized.
+2025-04-12 10:20:18.1025 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:20:18.1363 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:20:18.1363 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:20:18.1549 Info Configuration initialized.
+2025-04-12 10:20:54.7762 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:20:54.8012 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:20:54.8082 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:20:54.8330 Info Configuration initialized.
+2025-04-12 10:28:02.1433 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:28:02.1830 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:28:02.1830 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:28:02.2121 Info Configuration initialized.
+2025-04-12 10:35:44.5944 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:35:44.6349 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:35:44.6349 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:35:44.6768 Info Configuration initialized.
+2025-04-12 10:37:58.9463 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:37:58.9828 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:37:58.9927 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:37:59.0300 Info Configuration initialized.
+2025-04-12 10:38:52.3264 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:38:52.3628 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:38:52.3755 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:38:52.3893 Info Configuration initialized.
+2025-04-12 10:39:44.7870 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:39:44.8334 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:39:44.8398 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:39:44.8568 Info Configuration initialized.
+2025-04-12 10:44:38.5627 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:44:38.6007 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:44:38.6074 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:44:38.6258 Info Configuration initialized.
+2025-04-12 10:45:55.7658 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 10:45:55.8033 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 10:45:55.8111 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 10:45:55.8348 Info Configuration initialized.
+2025-04-12 11:10:32.7224 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:10:32.7658 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:10:32.7754 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:10:32.7923 Info Configuration initialized.
+2025-04-12 11:12:11.0836 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:12:11.1129 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:12:11.1197 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:12:11.1328 Info Configuration initialized.
+2025-04-12 11:13:25.6485 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:13:25.6810 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:13:25.6810 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:13:25.7383 Info Configuration initialized.
+2025-04-12 11:16:43.4517 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:16:43.4978 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:16:43.5119 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:16:43.5478 Info Configuration initialized.
+2025-04-12 11:18:04.9652 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:18:05.0003 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:18:05.0085 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:18:05.0484 Info Configuration initialized.
+2025-04-12 11:18:16.2608 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:18:16.3017 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:18:16.3101 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:18:16.3367 Info Configuration initialized.
+2025-04-12 11:18:36.7327 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:18:36.7633 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:18:36.7633 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:18:36.7851 Info Configuration initialized.
+2025-04-12 11:18:57.6659 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:18:57.8013 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:18:57.8114 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:18:57.8334 Info Configuration initialized.
+2025-04-12 11:19:39.0642 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:19:39.0946 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:19:39.1034 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:19:39.1175 Info Configuration initialized.
+2025-04-12 11:22:26.8877 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:22:26.9434 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:22:26.9502 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:22:27.0360 Info Configuration initialized.
+2025-04-12 11:24:29.7650 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:24:29.7976 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:24:29.7976 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:24:29.8224 Info Configuration initialized.
+2025-04-12 11:28:50.2242 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:28:50.2524 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:28:50.2589 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:28:50.2822 Info Configuration initialized.
+2025-04-12 11:29:58.5511 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:29:58.5825 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:29:58.5825 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:29:58.6013 Info Configuration initialized.
+2025-04-12 11:37:14.3741 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:37:14.3997 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:37:14.3997 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:37:14.4734 Info Configuration initialized.
+2025-04-12 11:38:38.5099 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:38:38.5463 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:38:38.5463 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:38:38.5977 Info Configuration initialized.
+2025-04-12 11:46:25.3490 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:46:25.3818 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:46:25.3818 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:46:25.3818 Info Configuration initialized.
+2025-04-12 11:50:41.3893 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:50:41.4181 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:50:41.4181 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:50:41.4409 Info Configuration initialized.
+2025-04-12 11:52:21.0225 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:52:21.0721 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:52:21.0721 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:52:21.1021 Info Configuration initialized.
+2025-04-12 11:54:11.7392 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:54:11.7713 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:54:11.7788 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:54:11.7912 Info Configuration initialized.
+2025-04-12 11:55:50.6075 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 11:55:50.6399 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 11:55:50.6399 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 11:55:50.6588 Info Configuration initialized.
+2025-04-12 12:01:32.2035 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:01:32.3134 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:01:32.3380 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:01:32.3938 Info Configuration initialized.
+2025-04-12 12:02:20.2432 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:02:20.2953 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:02:20.3041 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:02:20.3041 Info Configuration initialized.
+2025-04-12 12:03:03.1493 Info FileTarget(Name=ownFile-web_wrapped): Deleting old archive file: 'c:\temp\20250325.log'.
+2025-04-12 12:03:41.5231 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:03:41.5505 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:03:41.5575 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:03:41.5804 Info Configuration initialized.
+2025-04-12 12:19:06.4331 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:19:06.4859 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:19:06.4988 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:19:06.5208 Info Configuration initialized.
+2025-04-12 12:31:18.3111 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:31:18.3947 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:31:18.4054 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:31:18.4244 Info Configuration initialized.
+2025-04-12 12:46:46.5896 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-12 12:46:46.6162 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-12 12:46:46.6162 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\#work\e_learning\ElsWebApp\NLog.config
+2025-04-12 12:46:46.6353 Info Configuration initialized.
+2025-04-13 18:13:44.2380 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-04-13 18:13:44.3885 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-04-13 18:13:44.3982 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\Users\hirai\Desktop\e_learning\ElsWebApp\NLog.config
+2025-04-13 18:13:44.4221 Info Configuration initialized.
+2025-05-20 11:37:31.2752 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-05-20 11:37:31.3044 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-05-20 11:37:31.3044 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\Users\skoki\Downloads\20250520_HAL様用講義資料\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-05-20 11:37:31.3044 Info Configuration initialized.
+2025-05-20 11:37:53.3592 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-05-20 11:37:53.3689 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-05-20 11:37:53.3689 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\Users\skoki\Downloads\20250520_HAL様用講義資料\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-05-20 11:37:53.3819 Info Configuration initialized.
+2025-05-20 11:48:13.6015 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-05-20 11:48:13.6245 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-05-20 11:48:13.6302 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\Users\skoki\Downloads\20250520_HAL様用講義資料\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-05-20 11:48:15.3452 Info Configuration initialized.
+2025-06-06 09:59:52.5193 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-06 09:59:52.5475 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-06 09:59:52.5475 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-06 09:59:52.5751 Info Configuration initialized.
+2025-06-06 10:04:00.1653 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-06 10:04:00.1653 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-06 10:04:00.1653 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-06 10:04:00.1859 Info Configuration initialized.
+2025-06-06 10:04:11.8647 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-06 10:04:11.8729 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-06 10:04:11.8729 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-06 10:04:11.8876 Info Configuration initialized.
+2025-06-06 10:06:09.7493 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-06 10:06:09.7698 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-06 10:06:09.7749 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-06 10:06:09.7897 Info Configuration initialized.
+2025-06-06 11:25:53.9922 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-06 11:25:54.0528 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-06 11:25:54.0613 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-06 11:25:54.0743 Info Configuration initialized.
+2025-06-27 09:52:13.4589 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-27 09:52:13.4889 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-27 09:52:13.4953 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-27 09:52:13.5077 Info Configuration initialized.
+2025-06-27 10:06:21.1163 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-06-27 10:06:21.1589 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-06-27 10:06:21.1677 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-06-27 10:06:21.1881 Info Configuration initialized.
+2025-07-04 09:43:10.3443 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-07-04 09:43:10.3666 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-07-04 09:43:10.3666 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
+2025-07-04 09:43:10.3847 Info Configuration initialized.

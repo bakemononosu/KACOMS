@@ -1,0 +1,168 @@
+﻿@using ElsWebApp.Services
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ElsWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebars.css" />
+    <link rel="stylesheet" href="~/css/Common.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ElsWebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-light border-bottom box-shadow mt-0 mb-0 pt-0 pb-0 ">
+            <div class="container-fluid">
+                <img src="@ConstService.PathInfo.PATH_SYSTEM_LOGO" style="height:60px; object-fit:cover;" />
+                <button type="button" class="btn btn-light btn-logout" id="logout">ログアウト</button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_menu" aria-controls="offcanvas_menu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <!-- オフキャンバス ここから-->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_menu" style="width:280px;background:var(--menu-bg-color);">
+        <div class="logo">
+            <img src="@ConstService.PathInfo.PATH_SYSTEM_LOGO" style="height:60px; object-fit:cover;" />
+        </div>
+        <div class="offcanvas-body">
+            <i class="bi bi-person-circle lg-icon"></i>
+            <span class="fs-5 fw-semibold">@ViewData["UserName"]</span>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        マイページ(受講者)
+                    </button>
+                    <div class="collapse show" id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_MY_COURSE" class="link-body-emphasis d-inline-flex text-decoration-none rounded">マイ講座</a></li>
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_COURSES" class="link-body-emphasis d-inline-flex text-decoration-none rounded">講座一覧</a></li>
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_ACCOUNT?userId=@ViewData["UserId"]" class="link-body-emphasis d-inline-flex text-decoration-none rounded">アカウント情報</a></li>
+                            <li id="menu" class="menu-list"><a href="/Zoom/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Zoom自習室</a></li>
+                        </ul>
+                    </div>
+                </li>
+                @if ((ViewData["UserRole"]?.ToString() ?? "") == "8")
+                {
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            マイページ(管理者)
+                        </button>
+                        <div class="collapse show" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_STUDENTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">受講者管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">進捗管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_TEST_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト実施状況</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+                else if ((ViewData["UserRole"]?.ToString() ?? "") == "0" || (ViewData["UserRole"]?.ToString() ?? "") == "1")
+                {
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            マイページ(管理者)
+                        </button>
+                        <div class="collapse show" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_STUDENTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">受講者管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">進捗管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_TEST_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト実施状況</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES" class="link-body-emphasis d-inline-flex text-decoration-none rounded">講座管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_ALL_QUESTIONS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト管理</a></li>
+                                <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_ACCOUNTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">管理者アカウント管理</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <a class="link-logout">ログアウト</a>
+        </div>
+    </div>
+    <!-- オフキャンバス ここまで -->
+
+    <div class="ms-0 ps-0" style="display:flex;">
+        <div class="menu flex-nowrap col-xl-2">
+            <div class="flex-shrink-0 p-3" style="width:100%;">
+                <i class="bi bi-person-circle lg-icon"></i>
+                <span class="fs-5 fw-semibold">@ViewData["UserName"]</span>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        マイページ(受講者)
+                    </button>
+                    <div class="collapse show" id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_MY_COURSE" class="link-body-emphasis d-inline-flex text-decoration-none rounded">マイ講座</a></li>
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_COURSES" class="link-body-emphasis d-inline-flex text-decoration-none rounded">講座一覧</a></li>
+                            <li id="menu"><a href="@ConstService.PathInfo.PATH_ST_PAGE_SHOW_ACCOUNT?userId=@ViewData["UserId"]" class="link-body-emphasis d-inline-flex text-decoration-none rounded">アカウント情報</a></li>
+                                <li id="menu" class="menu-list"><a href="/Zoom/Index" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Zoom自習室</a></li>
+                        </ul>
+                    </div>
+                    </li>
+                    @if ((ViewData["UserRole"]?.ToString() ?? "") == "8")
+                    {
+                        <li class="mb-1">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                マイページ(管理者)
+                            </button>
+                            <div class="collapse show" id="dashboard-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_STUDENTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">受講者管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">進捗管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_TEST_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト実施状況</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                    else if ((ViewData["UserRole"]?.ToString() ?? "") == "0" || (ViewData["UserRole"]?.ToString() ?? "") == "1")
+                    {
+                        <li class="mb-1">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                マイページ(管理者)
+                            </button>
+                            <div class="collapse show" id="dashboard-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_STUDENTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">受講者管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">進捗管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES_TEST_STATUS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト実施状況</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_COURSES" class="link-body-emphasis d-inline-flex text-decoration-none rounded">講座管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_ALL_QUESTIONS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">テスト管理</a></li>
+                                    <li id="menu" class="menu-list"><a href="@ConstService.PathInfo.PATH_AD_PAGE_SHOW_ACCOUNTS" class="link-body-emphasis d-inline-flex text-decoration-none rounded">管理者アカウント管理</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div role="main" class="main col-12 col-xl-10 pb-3" style="min-height:855px;">
+            @RenderBody()
+        </div>
+    </div>
+    @{
+        var breadcrumb = Context.Session.GetString("breadcrumb");
+    }
+    <input type="hidden" id="breadcrumb" value="@breadcrumb" />
+    <input type="hidden" id="top_url" value="@ViewData["TopURL"]" />
+    <!---->
+        <footer class="border-top footer text-muted pt-1 pb-1">
+            <div class="container-fluid text-md-end">
+                &copy; 2024 - E-Larning System - <img src="~/logo/ec_logo.png">
+            </div>
+        </footer>
+    <!---->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Common.js" asp-append-version="true"></script>
+    <script src="~/js/sidebars.js"></script>
+    <script src="~/js/Breadcrumb.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

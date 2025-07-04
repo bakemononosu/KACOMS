@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+
+@using ElsWebApp.Models
+@model StudentMyCourseViewModel
+
+<div class="sub-container">
+    <div class="content-main d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center col-12 col-sm-8 col-lx-6">
+            <div class="mt-5 text-center">
+                <label class="white-space-nowrap">@(Model.ConfirmExaminationData != null ? $"{Model.ConfirmExaminationData.ChapterName}を実施しますか？" : "情報がありません")</label>
+            </div>
+            <div class="d-flex justify-content-center mt-5 white-space-nowrap w-100">
+                <button type="button" class="btn btn-primary w-50" onclick="MoveView(`ShowTestContents`)" @(Model.ConfirmExaminationData?.NoDataFlg == "True" ? "disabled" : "")>
+                    実施する
+                </button>
+            </div>
+            <div class="d-flex justify-content-center mt-5 white-space-nowrap w-100">
+                <button type="button" class="btn btn-primary w-50" onclick="MoveView(`ShowExaminationHistory`)" @(Model.ConfirmExaminationData?.ExaminationHistoryFlg == true ? "" : "disabled")>
+                    過去の問題を参照する
+                </button>
+            </div>
+            <div class="d-flex justify-content-center mt-5 white-space-nowrap w-100">
+                <button type="button" class="btn btn-primary w-50" onclick="MoveView(`ShowMyChapter`)">いいえ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="userId" name="userId" value="@Model.ConfirmExaminationData?.UserId">
+<input type="hidden" id="courseId" name="CourseId" value="@Model.ConfirmExaminationData?.CourseId">
+<input type="hidden" id="chapterId" name="ChapterId" value="@Model.ConfirmExaminationData?.ChapterId">
+
+@section scripts {
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/StudentMyCourse.js" asp-append-version="true" charset="shift_jis"></script>
+}

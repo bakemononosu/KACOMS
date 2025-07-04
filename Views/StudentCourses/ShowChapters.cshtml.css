@@ -1,0 +1,32 @@
+﻿.table-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    height: 550px;
+}
+
+.detail-area {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.card-start {
+    text-align: center;
+}
+
+.card-name {
+    text-align: start;
+    padding-left: 30px;
+    font-size: 1.4rem;
+}
+
+.card-type {
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.card-time {
+    text-align: end;
+}

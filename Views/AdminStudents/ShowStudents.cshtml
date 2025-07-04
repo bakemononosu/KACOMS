@@ -1,0 +1,172 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model UserInfoViewModel
+@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <div class="accordion" id="accordionSearch">
+            <div class="accordion-header" id="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    検索条件
+                </button>
+            </div>
+            <form method="POST" asp-controller="AdminStudents" asp-action="SearchStudents">
+                <div id="collapseOne" class="accordion-collapse collapse show mt-2 mr-2" data-bs-parent="#accordionSearch">
+                    <div class="row g-4">
+                        <div class="search-area-left col">
+                            <div class="input-container">
+                                <label>氏名:</label>
+                                <input class="form-control" type="text" id="userName" name="userName" value="@Model.UserEnteredName" maxlength="32">
+                            </div>
+                            <div class="input-container">
+                                <label>e-mail:</label>
+                                <input class="form-control" type="text" id="email" name="email" value="@Model.UserEnteredEmail" data-email="@Model.UserEnteredEmail" maxlength="255">
+                            </div>
+                            <div class="input-container">
+                                <label>法人名:</label>
+                                @if (Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO)
+                                {
+                                    <input class="form-control text-truncate" type="text" id="companyName" name="companyName" value="@Model.CompanyName" disabled>
+                                }
+                                else
+                                {
+                                    <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.UserEnteredCorporateName" maxlength="128">
+                                }
+                            </div>
+                            <div class="input-container">
+                                <label>社員番号:</label>
+                                <input class="form-control" type="text" id="employeeNo" name="employeeNo" value="@Model.UserEnteredEmployeeNumber" maxlength="16">
+                            </div>
+                            <div class="input-container">
+                                <label>備考-1:</label>
+                                <input class="form-control" type="text" id="remarks1" name="remarks1" value="@Model.UserEnteredNotes1" maxlength="64">
+                            </div>
+                            <div class="input-container">
+                                <label>備考-2:</label>
+                                <input class="form-control" type="text" id="remarks2" name="remarks2" value="@Model.UserEnteredNotes2" maxlength="64">
+                            </div>
+                        </div>
+                        <div class="search-area-right col">
+                            <div class="input-container">
+                                <label>管理グループ:</label>
+                                <select class="form-select" asp-items="@Model.RolesList" name="userRole" id="userRole">
+                                    <option value="">選択してください</option>
+                                </select>
+                            </div>
+                            <div class="input-container">
+                                <label>利用可否:</label>
+                                <select class="form-select" asp-items="@Model.AvailableList" name="available" id="available" data-available="@Model.UserEnteredAvailability">
+                                    <option value="">選択してください</option>
+                                </select>
+                            </div>
+                            <div class="input-container">
+                                <label>所属部署名:</label>
+                                <input class="form-control" type="text" id="departmentName" name="departmentName" value="@Model.UserEnteredDepartment" maxlength="128">
+                            </div>
+                            <div class="input-container">
+                                <input class="form-control" type="text" id="blankLine" readonly>
+                            </div>
+                            <div>
+                                <div class="button-container">
+                                    <button class="btn btn-primary btn-c6">検索</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="button-container">
+                                    <button id="downloadButton" type="button" class="btn btn-secondary btn-c6" onclick="handleDownloadButtonClick('AdminStudents')">ダウンロード</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid-title mt-3 mb-1">
+            <h6 class="mr-2">受講者一覧</h6>
+            <span class="span-icon" onclick="handleShowIndividual()">
+                <i class="bi bi-plus-square-fill"></i>
+            </span>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>編集</th>
+                        <th>受講者名</th>
+                        <th>メールアドレス</th>
+                        <th>管理グループ</th>
+                        <th>利用可否</th>
+                        <th>法人名</th>
+                        <th>所属部署名</th>
+                        <th>社員番号</th>
+                        <th>備考-1</th>
+                        <th>備考-2</th>
+                        <th>登録日付</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.UserList != null)
+                        @foreach (var user in Model.UserList)
+                        {
+                            <tr id="tr_@user.UserId">
+                                <td class="text-center mw-px-90">
+                                    <span class="span-icon" onclick="handleDeleteStudent(`@user.UserId`)">
+                                        <i class="bi bi-trash3"></i>
+                                    </span>
+                                    <span class="span-icon" onclick="handleShowIndividual(`@user.UserId`)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </td>
+                                <td class="mw-px-150">@user.UserName</td>
+                                <td class="mw-px-450">@user.Email</td>
+                                <td class="text-center mw-px-90">@(user.UserRole == ConstService.SystemCode.SYSCODE_USR_USERS ? "受講者" : user.UserRole == ConstService.SystemCode.SYSCODE_USR_ADMIN ? "システム管理者" : "法人代表管理者")</td>
+                                <td class="text-center mw-px-90">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="switch_@user.UserId" name="switch" @(user.AvailableFlg ? "checked" : "") onchange="handleToggleAvailable(`@user.UserId`)" />
+                                        <label class="form-check-label" for="switch_@user.UserId"></label>
+                                    </div>
+                                </td>
+                                <td class="mw-px-200">@user.CompanyName</td>
+                                <td class="mw-px-90">@user.DepartmentName</td>
+                                <td class="mw-px-90">@user.EmployeeNo</td>
+                                <td class="mw-px-150">@user.Remarks1</td>
+                                <td class="mw-px-150">@user.Remarks2</td>
+                                <td class="text-center mw-px-150">@user.CreatedAt!.Value.ToString("yyyy/MM/dd")</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+        <div class="blk_update">
+            <form asp-controller="AdminStudents" asp-action="TransitionBulkUpload">
+                <button type="submit" class="btn btn-secondary btn-c6 justify-content-fe">一括更新</button>
+            </form>
+        </div>
+
+        <form method="POST" asp-controller="AdminStudents" id="searchedKeyWords">
+            <input type="hidden" id="userId" name="userId" />
+            <input type="hidden" id="enteredEmail" name="enteredEmail" value="@Model.UserEnteredEmail" />
+            <input type="hidden" id="enteredUserName" name="enteredUserName" value="@Model.UserEnteredName" />
+            <input type="hidden" id="enteredCompanyName" name="enteredCompanyName" value="@Model.UserEnteredCorporateName" />
+            <input type="hidden" id="enteredDepartmentName" name="enteredDepartmentName" value="@Model.UserEnteredDepartment" />
+            <input type="hidden" id="enteredEmployeeNo" name="enteredEmployeeNo" value="@Model.UserEnteredEmployeeNumber" />
+            <input type="hidden" id="enteredRemarks1" name="enteredRemarks1" value="@Model.UserEnteredNotes1" />
+            <input type="hidden" id="enteredRemarks2" name="enteredRemarks2" value="@Model.UserEnteredNotes2" />
+            <input type="hidden" id="enteredAvailableFlg" name="enteredAvailableFlg" value="@Model.UserEnteredAvailability" />
+            <input type="hidden" id="enteredUserRole" name="enteredUserRole" value="@Model.UserEnteredManagementGroup" />
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/AdminStudents.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/CsvDownload.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+}

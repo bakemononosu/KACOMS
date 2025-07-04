@@ -1,0 +1,194 @@
+﻿
+/* 全体 */
+.content-main {
+    padding: 10px;
+    margin-top: 0px;
+}
+
+/* コース情報入力 */
+.accordion {
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    min-width: 345px;
+    width: 100%
+}
+
+.accordion-button {
+    width: 100%;
+    height: 10px
+}
+
+.head-table {
+    justify-content: center;
+}
+
+    .head-table label {
+        text-align: right;
+        white-space: nowrap;
+        margin-right: 0px;
+        max-width: 111px;
+    }
+
+    .head-table input {
+        margin-left: 0px;
+    }
+
+@media (max-width:1100px) {
+    .head-table label {
+        text-align: left;
+        padding-right: 600px;
+    }
+
+    #registButton {
+        width: 66%;
+    }
+}
+
+.input-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.input-button {
+    text-align: right;
+}
+
+.btn-c6 {
+    padding: .375rem .75rem;
+}
+
+/* 「～」位置調整用 */
+.date-range {
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+/* 追加（＋）ボタン */
+.bi-plus-square-fill {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.plus-active {
+    color: orange;
+    vertical-align: super;
+}
+
+.plus-inactive {
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.grid-title {
+    display: flex;
+    align-items: center;
+}
+
+/* コース講座一覧 */
+.table-container {
+    overflow: auto;
+}
+
+    .table-container th {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+
+.col-edit {
+    width: 80px;
+    text-align: center;
+}
+
+.span-icon {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.col-orderno {
+    width: 80px;
+}
+
+.form-orderno {
+    text-align: right;
+}
+
+.col-contents {
+    text-align: center;
+    width: 125px;
+}
+
+.item-contents {
+    display: inline-block;
+    text-align: center;
+}
+
+.col-leantime {
+    text-align: right;
+    width: 80px;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+/* 一覧スクロール ヘッダ固定 */
+.table-container table {
+    border-collapse: separate; /* 二重ボーダー：ボーダーが固定されない対応 */
+    border-spacing: 0px;
+    border-left: 1px solid #ffffff; /* ボーダー重複を防ぐため左だけを消す */
+}
+
+    .table-container table th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+    }
+
+        .table-container table th::before { /* ヘッダ部の上下ボーダーが消える対応 */
+            content: "";
+            position: absolute;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0px;
+        }
+
+    .table-container table td { /* データ部の上下ボーダーが消える対応 */
+        z-index: -1;
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+        .table-container table th:first-child,
+        .table-container table td:first-child {
+            border-left: 1px solid #d0d0d0; /* ボーダー左を消しているので、最左だけボーダー追加 */
+        }
+
+.update-orderNumber-button {
+    display: flex;
+    justify-content: right;
+    max-width: 100%;
+}
+
+.w-100px {
+    width: 100px
+}
+
+.ellipsis_dot {
+    width: auto;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

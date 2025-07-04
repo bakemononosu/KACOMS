@@ -1,0 +1,26 @@
+﻿.content-main {
+    top: 100px;
+    position: absolute;
+}
+
+h5 {
+    margin-left: 1.25rem;
+}
+
+.contents {
+    margin: 0 auto;
+    width: 72%;
+    max-height: 75vh;
+}
+
+.video-area {
+    aspect-ratio: 16 / 9;
+}
+
+.action {
+    display: flex;
+    padding: 10px;
+    margin: 0 auto;
+    width: 75%;
+    justify-content: space-between;
+}

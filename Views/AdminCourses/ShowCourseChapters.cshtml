@@ -1,0 +1,165 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Models.Entitiy
+@using ElsWebApp.Services
+@model AdminCourseChaptersViewModel
+
+
+<div class="sub-container">
+    <div class="content-main row m-0">
+
+        <div class="accordion d-flex col-sm-12 col-md-8" id="accordionExample">
+            <div class="accordion-item">
+                <div class="accordion-header" id="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        講座情報
+                    </button>
+                </div>
+
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+
+                    <form method="POST"></form>
+                    <div class="head-table row">
+
+                        <div class="form-group input-container row">
+                            <label class="col-2 col-form-label">講座名:</label>
+                            <div class="col-12 col-xl-10">
+                                <input type="text" class="form-control" maxlength="64" id="CourseName" value="@Model.CourseName" />
+                                <input type="hidden" asp-for="@Model.CourseId" />
+                            </div>
+                        </div>
+                        <div class="form-group input-container row">
+                            <label class="col-2 col-form-label">講座説明:</label>
+                            <div class="col-12 col-xl-10">
+                                <textarea class="form-control" rows="3" maxlength="255" id="CourseExplaination">@Model.CourseExplaination</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group input-container row">
+                            <label class="col-2 col-form-label">
+                                <input type="radio" id="PriPeriod" asp-for="@Model.PrimaryReference" value="@ConstService.SystemCode.SYSCODE_PRI_PERIOD"
+                                       onchange="changePublic('@ConstService.SystemCode.SYSCODE_PUB_NO');" />
+                                @Model.PriPeriodLabel:
+                            </label>
+                            <div class="col-12 col-xl-10">
+                                <div class="d-flex">
+                                    <input type="date" max="9999-12-31" class="form-control datetimepicker-input" id="BegineDateTime" value="@(Model.BegineDateTime.HasValue ? Model.BegineDateTime.Value.ToString("yyyy-MM-dd"):"")" />
+                                    <span class="date-range">～</span>
+                                    <input type="date" max="9999-12-31" class="form-control datetimepicker-input" id="EndDateTime" value="@(Model.EndDateTime.HasValue ? Model.EndDateTime.Value.ToString("yyyy-MM-dd"):"")" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group input-container row">
+                            <label class="col-2 col-form-label">
+                                <input type="radio" id="PriFlag" asp-for="@Model.PrimaryReference" value="@ConstService.SystemCode.SYSCODE_PRI_FLAG"
+                                       onchange="changePublic('@ConstService.SystemCode.SYSCODE_PUB_YES');" />
+                                @Model.PriFlagLabel:
+                            </label>
+                            <div class="col-4">
+                                <select class="form-select" asp-items="@Model.PublicFlgList" id="PublicFlg">
+                                </select>
+                            </div>
+                            <div class="col-8 col-sm-6 input-button" id="registButton">
+                                <button type="button" class="btn btn-primary btn-c6" onclick="updateCourse();">登録</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-title mb-1">
+            <h5 class="mr-2">セクション一覧</h5>
+            @if (Model.CourseId != null)
+            {
+                <a class="span-icon @(Model.IsExistsUserCourse == 1 ? "disabled" : "")"
+                @(Model.IsExistsUserCourse == 1 ? "" : $"href=/AdminCourses/ShowChapter/{Model.CourseId}")>
+                    <i class="bi bi-plus-square-fill plus-active"></i>
+                </a>
+            }
+            else
+            {
+                <i class="bi bi-plus-square-fill plus-inactive"></i>
+            }
+        </div>
+
+        <div class="table-container col-sm-12 col-md-10">
+            @if (Model.ChapterList != null)
+            {
+                <input type="hidden" value="@Model.ChapterList.Count" id="listCount" />
+            }
+
+            <table class="table table-bordered" id="chapterTablelData">
+                <thead>
+                    <tr>
+                        <th class="col-edit">編集</th>
+                        <th class="col-orderno">順</th>
+                        <th>セクション名</th>
+                        <th>学習コンテンツ</th>
+                        <th>学習時間</th>
+                    </tr>
+                </thead>
+                @if (Model.ChapterList != null)
+                {
+                    @for (var i = 0; i < Model.ChapterList.Count; i++)
+                    {
+                        <tr id="tr_@Model.ChapterList[i].ChapterId">
+                            <td class="col-edit">
+                                @* 編集 *@
+                                <span class="span-icon @(Model.IsExistsUserCourse == 1 ? "disabled" : "")"
+                                @{
+                                    var chapterId = Model.ChapterList[i].ChapterId;
+                                    var courseId = Model.CourseId;
+                                }
+                                @(Model.IsExistsUserCourse == 1 ? "" : $"onclick=deleteChapter('{chapterId}','{courseId}')")>
+                                    <i class="bi bi-trash3"></i>
+                                </span>
+                                <a class="span-icon"
+                                   href="/AdminCourses/ShowChapter/@Model.CourseId/@Model.ChapterList[i].ChapterId">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <td class="col-orderno">
+                                <input type="text" class="form-orderno form-control form-control-sm" id="OrderNo_@i" value="@Model.ChapterList[i].OrderNo" maxlength="2"
+                                @(Model.IsExistsUserCourse == 1 ? "disabled" : "") @(Model.IsExistsUserCourse == 1 ? "" : $"onchange=resizeCourseChapter()") />
+                            </td>
+                            <td class="ellipsis_dot">
+                                @Model.ChapterList[i].ChapterName
+                            </td>
+                            <td class="col-contents">
+                                @if (Model.ContentsList != null)
+                                {
+                                    @foreach (var contents in Model.ContentsList)
+                                    {
+                                        <span class="item-contents">
+                                            <input type="radio" id="ContentsType[@i]_@contents.Value" asp-for="@Model.ChapterList[i].ContentsType"
+                                                   value="@contents.Value"
+                                                   disabled="@(Model.ChapterList[i].ContentsType != contents.Value)" />
+                                            <label for="ContentsType[@i]_@contents.Value">@contents.Text</label>
+                                        </span>
+                                    }
+                                }
+                            </td>
+                            <td class="col-leantime">
+                                @Model.ChapterList[i].LearningTime
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-10 pt-2">
+            <div class="update-orderNumber-button">
+                <button type="button" class=" w-100px btn btn-secondary btn-sm  btn-c6 justify-content-end"
+                @(Model.IsExistsUserCourse == 1 ? "disabled" : Model.ChapterList == null ? "disabled" : "") @(Model.IsExistsUserCourse == 1 ? "" : $"onclick=updateOrderNoByList('{Model.CourseId}')")>
+                    学習順更新
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/AdminCourses.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}
+

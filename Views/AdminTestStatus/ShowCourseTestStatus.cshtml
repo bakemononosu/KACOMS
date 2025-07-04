@@ -1,0 +1,118 @@
+﻿@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model TestStatusViewModel
+@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <div class="accordion d-flex" id="accordionSearch">
+            <div class="accordion-item">
+                <div class="accordion-header" id="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="adjustTableHeight(this)">
+                        検索条件
+                    </button>
+                </div>
+                <form method="POST" asp-controller="AdminTestStatus" asp-action="SearchTestStatus">
+                    <div id="collapseOne" class="accordion-collapse collapse show mt-2 mr-2" data-bs-parent="#accordionSearch">
+                        <div class="d-flex">
+                            <div class="input-container searchInput">
+                                <label>法人名:</label>
+                                @if (Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO)
+                                {
+                                    <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.CompanyName" readonly>
+                                }
+                                else
+                                {
+                                    <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.UserEnteredCorporateName">
+                                }
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="input-container courseSelect">
+                                <label id="cources">コース:</label>
+                                <select class="form-select" asp-items="@Model.CoursesList" class="form-control" name="courseId" id="courseId" data-cource="@Model.UserEnteredCourse" required>
+                                    <option value="">選択してください</option>
+                                </select>
+                            </div>
+                            <div class="button-container">
+                                <button class="btn btn-primary btn-sm btn-c6">検索</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-container col-12">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>受講者名</th>
+                        <th>法人名</th>
+                        @if (Model.ScoresHeader != null)
+                        {
+                            if (Model.ScoresHeader.Count() < 1)
+                            {
+                                <th>得点 1</th>
+                            }
+                            foreach (var item in Model.ScoresHeader.Select((Value, Index) => new { Value, Index }))
+                            {
+                                <th>得点 @(item.Index + 1)</th>
+                            }
+                        }
+                        else
+                        {
+                            <th>得点 1</th>
+                        }
+                    </tr>
+                </thead>
+                @if (Model.CourseTestStatusList != null)
+                {
+                    <tbody>
+                        @foreach (var item in Model.CourseTestStatusList)
+                        {
+                            <tr id="tr_@item.UserId">
+                                <td id="names">
+                                    <span id="link_user" onclick="CallShowCourseStudentTestStatus(`@item.UserId`)">@item.UserName</span>
+                                </td>
+                                <td id="company">
+                                    @item.CompanyName
+                                </td>
+                                @if (Model.ScoresHeader != null)
+                                {
+                                    @for (int i = 0; i < Model.ScoresHeader.Count; i++)
+                                    {
+                                        if (item.Scores.Count > i)
+                                        {
+                                            <td id="score">@item.Scores.ElementAt(i).Value</td>
+                                        }
+                                        else
+                                        {
+                                            <td id="score">---/---</td>
+                                        }
+
+                                    }
+                                } else
+                                {
+                                    <td id="score">テスト講座がありません</td>
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+        <form method="POST" asp-controller="AdminTestStatus" id="searchedKeyWords">
+            <input type="hidden" id="userId" name="userId" />
+            <input type="hidden" id="enteredCompanyName" name="companyName" value="@Model.UserEnteredCorporateName" />
+            <input type="hidden" id="enteredCourse" name="courseId" value="@Model.UserEnteredCourse" />
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/AdminTestStatus.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+}

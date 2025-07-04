@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Models.Entitiy
+@using ElsWebApp.Services
+@model UserInfoViewModel
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <form method="POST"></form>
+        @if (Model.SearchDataForMUser != null)
+        {
+            <div class="row">
+                @{
+                    bool isNew = Model.SearchDataForMUser.UserId == new Guid("{00000000-0000-0000-0000-000000000000}");
+                    bool isCorpUser = Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO;
+                }
+                <div class="col-md-5  col-sm-10">
+                    <div class="form-group">
+                        <label>受講可否:</label>
+                        <select class="form-select" asp-items="@Model.AvailableList" name="availableFlgPersonal" id="availableFlgPersonal" value="@Model.SearchDataForMUser.AvailableFlg">
+                            <option value="">選択してください</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>管理グループ:</label>
+                        @if (isCorpUser)
+                        {
+                            <select class="form-select" asp-items="@Model.RolesList" name="userRolePersonal" id="userRolePersonal" value="@Model.UserRole" disabled>
+                                <option value="">選択してください</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select" asp-items="@Model.RolesList" name="userRolePersonal" id="userRolePersonal" value="@Model.UserRole">
+                                <option value="">選択してください</option>
+                            </select>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-sm-10">
+                    <div class="form-group">
+                        <label>ユーザID（メールアドレス）:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.Email" id="emailPersonal" name="emailPersonal" class="form-control errorMessages" @(isNew ? "" : "readonly") />
+                    </div>
+                    <div class="form-group visually-hidden">
+                        <label>UserId:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.UserId" id="userIdPersonal" name="userIdPersonal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>氏名:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.UserName" id="userNamePersonal" name="userNamePersonal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>法人名:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.CompanyName" id="companyNamePersonal" name="companyNamePersonal" class="form-control" @(isCorpUser ? "readonly" : "") />
+                    </div>
+
+                    <div class="form-group">
+                        <label>部署名:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.DepartmentName" id="departmentNamePersonal" name="departmentNamePersonal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>社員番号:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.EmployeeNo" id="employeeNoPersonal" name="employeeNoPersonal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>備考-1:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.Remarks1" id="remarks1Personal" name="remarks1Personal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>備考-2:</label>
+                        <input type="text" value="@Model.SearchDataForMUser.Remarks2" id="remarks2Personal" name="remarks2Personal" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="passwordChangeRequest" name="passwordChangeRequest" class="form-check-input" @(isNew ? "disabled" : "") />
+                            <label class="form-check-label" for="passwordChangeRequest">パスワード変更申請</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex col-md-10 col-sm-10 justify-content-between mt-2">
+                    <div>
+                        <button type="button" class="btn btn-secondary btn-c6" onclick="backShowAdminStudents()">キャンセル</button>
+                    </div>
+                    <div>
+                        @if (Model.SearchDataForMUser.UserId == new Guid("{00000000-0000-0000-0000-000000000000}"))
+                        {
+                            <button type="button" class="btn btn-primary btn-c6" onclick="newUserInsert()">登録</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-danger btn-c6" onclick="deleteAccountForDetail()">削除</button>
+                            <button type="button" class="btn btn-primary btn-c6" onclick="newUserUpdate()">登録</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<form method="POST" asp-controller="AdminStudents" asp-action="SearchStudents" id="returnSearchedKeyWords">
+    <input type="hidden" id="email" name="email" value="@Model.UserEnteredEmail" />
+    <input type="hidden" id="userName" name="userName" value="@Model.UserEnteredName" />
+    <input type="hidden" id="companyName" name="companyName" value="@Model.UserEnteredCorporateName" />
+    <input type="hidden" id="departmentName" name="departmentName" value="@Model.UserEnteredDepartment" />
+    <input type="hidden" id="employeeNo" name="employeeNo" value="@Model.UserEnteredEmployeeNumber" />
+    <input type="hidden" id="remarks1" name="remarks1" value="@Model.UserEnteredNotes1" />
+    <input type="hidden" id="remarks2" name="remarks2" value="@Model.UserEnteredNotes2" />
+    <input type="hidden" id="available" name="available" value="@Model.UserEnteredAvailability" />
+    <input type="hidden" id="userRole" name="userRole" value="@Model.UserEnteredManagementGroup" />
+</form>
+@section scripts {
+    <script src="~/js/AdminStudents.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+}

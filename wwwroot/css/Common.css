@@ -1,0 +1,31 @@
+﻿:root {
+    --header-bg-color: linear-gradient(90deg,#FFFFFF 0%,#61CBF3 100%);
+    --offcanvas-hd-bg-color: linear-gradient(90deg,#FFFFFF 0%,#61CBF3 150%);
+    --menu-bg-color: linear-gradient(90deg,#DAE9F8 0%,#61CBF3 100%);
+    --selectd-icon-color: #C3F3D1;
+    --menu-display: flex;
+    --plus-icon-color: orange;
+}
+
+table td {
+    background-color: white;
+}
+
+.btn-c6 {
+    width: 85px;
+    line-height: 1.8;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: .2rem;
+}
+
+@media screen and ( max-width : 1199px ) {
+    :root {
+        --menu-display: none;
+    }
+}
+
+.gc-plus-icon {
+    color: var(--plus-icon-color);
+    cursor: pointer;
+}

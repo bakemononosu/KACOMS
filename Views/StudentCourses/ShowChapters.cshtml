@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model StudentCoursesViewModel
+
+ <form method="POST"></form>
+<div class="sub-container">
+    <div class="detail-area">
+
+        <div class="table-container">
+            <div class="row g-4">
+
+                @if (Model.ChapterList != null)
+                {
+                    @foreach (var data in Model.ChapterList)
+                    {
+                        var contentsType = "";
+                        var background = "";
+                        var color = "";
+                        var unit = "";
+                        if (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_MOVIE)
+                        {
+                            contentsType = "動画";
+                            background = "bg-info";
+                            color = "text-black";
+                            unit = "再生時間";
+                        }
+                        else
+                        {
+                            contentsType = "テスト";
+                            background = "bg-success";
+                            color = "text-white";
+                            unit = "制限時間";
+                        }
+                        <div class="col-12 col-lg-12">
+                            <div class="card h-100">
+
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-lg-1 card-start">
+
+                                            セクション
+                                            @(data.OrderNo.HasValue ? String.Format("{0:D2}", data.OrderNo) : "")
+
+
+                                        </div>
+                                        <h5 class="col-10 col-lg-8 d-sm-block card-name">@data.ChapterName</h5>
+                                        <div class="col-2 col-lg-1 card-type">
+                                            @*学習コンテンツ*@
+                                            <span class="badge rounded-pill @background @color" style="width:3.0rem">@contentsType</span>
+                                        </div>
+                                        <div class="col-1 col-lg-1 d-none d-sm-block card-time">@unit:</div>
+
+                                        <div class="col-12 col-lg-1 card-time">
+                                            @if (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_MOVIE)
+                                            {
+
+                                                var span = new TimeSpan(0, 0, int.Parse(data.PlaybackTime? .ToString()?? "0"));
+
+                                                var playbacktime = span.ToString(@"hh\:mm\:ss");
+                                                <div>@playbacktime</div>
+
+                                            }
+                                            else if (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_TEST)
+                                            {
+                                                @if (data.LimitTime == 0)
+                                                {
+                                                    <div>  --:--:--</div>
+                                                }
+                                                else
+                                                {
+                                                    var span = new TimeSpan(0, 0, int.Parse(data.LimitTime? .ToString()?? "0"));
+                                                    var limittime = span.ToString(@"hh\:mm\:ss");
+                                                    <div>@limittime</div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/StudentCourses.js" asp-append-version="true" charset="shift_jis"></script>
+}

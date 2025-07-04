@@ -1,0 +1,50 @@
+﻿
+
+.detail-area {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.table-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.play-icon:hover {
+    color: var(--selectd-icon-color);
+}
+
+.xlg-font {
+    font-size: 3.0rem;
+}
+
+.card-chapter {
+    text-align: center;
+}
+
+.card-play {
+    text-align: center;
+}
+
+.card-status {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.width-100 {
+    width: 100px;
+}
+
+.a-ignore {
+    color: lightgray;
+}
+
+.text-ellipsis {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

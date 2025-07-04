@@ -1,0 +1,54 @@
+﻿<div id="showModelNewQuestioninsert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="showModelNewQuestioninsertLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-700" role="document">
+        <div class="modal-content h-800 o-a">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="showModelNewQuestioninsertLabel" disable></h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" id="modal_close_btn">&times;</button>
+            </div>
+
+            <div class="modal-body" id="showModelNewQuestioninsertContent">
+                <div class="container">
+                    <div class="mb-3">
+                        <label>選択肢</label>
+                        <textarea id="modalAnswerText" name="modalAnswerText" class="form-control" rows="5" placeholder="選択肢として表示する文章を入力して下さい。"></textarea>
+                    </div>
+                    <div id="dropZone">
+                        <p>選択肢に表示する画像ファイル(png.jpg)をドロップまたは選択してください。</p>
+                        <input class="d-none" type="file" id="answerImage" accept=".jpg, .jpeg, .png">
+                        <button onclick="document.getElementById('answerImage').click();">ファイル選択</button>
+                        <p id="AnswerFileName"></p>
+                    </div>
+                    <div id="showPicture"></div>
+                    <input type="hidden" name="base64PictureBinaryAnswer" id="base64PictureBinaryAnswer">
+                    <div id="modalAnswerId" name="modalAnswerId"></div>
+                    <div class="">
+                        <label>解説</label>
+                        <textarea id="modalexplanationText" name="modalexplanationText" class="form-control w-100 re-none" rows="5" placeholder="解答として表示する文章を入力して下さい。"></textarea>
+                    </div>
+                    <div class="mt-10">
+                        <label>解答</label>
+                        <div class="answer-options">
+                            <div>
+                                <input type="radio" id="correctAnswer" name="answer" value="correct" @(Model.QuestionCatalogData?.UsedFlg == 1 ? "disabled" : "")>
+                                <label for="correctAnswer">正解</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="incorrectAnswer" name="answer" value="incorrect" @(Model.QuestionCatalogData?.UsedFlg == 1 ? "disabled" : "")>
+                                <label for="incorrectAnswer">不正解</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="modalAnswerId1" name="modalAnswerId1" />
+                    <input type="hidden" id="changeOrinsertFlag" name="changeOrinsertFlag" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="mr-510 btn btn-secondary" data-bs-dismiss="modal" aria-label="Close" id="modal_close_btn">キャンセル</button>
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-primary" onclick="changeOrInsert()" id="hanneiButton">反映</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

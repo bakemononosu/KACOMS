@@ -1,0 +1,144 @@
+﻿thead tr, tbody tr {
+    white-space: nowrap;
+}
+
+.content-main {
+    margin-left: 1.25rem;
+}
+
+.container-left {
+    width:85%;
+}
+
+.container-right {
+    width: 15%;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .input-container label {
+        margin-right: 5px;
+        min-width: 80px;
+        text-align: right;
+    }
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    padding-bottom: 10px;
+}
+
+.accordion {
+    margin-bottom: 20px;
+}
+.accordion-item {
+    min-width: 409px;
+    width: 45%;
+}
+
+.accordion-button {
+    width: 100%;
+    height: 10px
+}
+
+tr th {
+    text-align:center;
+}
+
+.searchInput,
+.courseSelect {
+    width: 100%;
+}
+
+.progress-rate {
+    max-width:4.3rem;
+}
+
+.table-container {
+    overflow: auto;
+    width: 65%;
+}
+
+@media (max-width:767px) {
+    .table-container {
+        width: 100%;
+    }
+}
+
+#names {
+    text-align: left;
+}
+
+.link-text,
+#link_user {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#period {
+    max-width: 200px;
+    text-align: left;
+    width: 10%;
+}
+
+#progress {
+    width: 30%;
+    position: relative;
+}
+
+.progress {
+    height: 25px;
+}
+
+.progress-bar {
+    font-size: 15px;
+}
+
+.progress-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 一覧スクロール ヘッダ固定 */
+.table-container table {
+    border-collapse: separate; /* 二重ボーダー：ボーダーが固定されない対応 */
+    border-spacing: 0px;
+    border-left: 1px solid #ffffff; /* ボーダー重複を防ぐため左だけを消す */
+}
+
+    .table-container table th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+    }
+
+        .table-container table th::before { /* ヘッダ部の上下ボーダーが消える対応 */
+            content: "";
+            position: absolute;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0px;
+        }
+
+    .table-container table td { /* データ部の上下ボーダーが消える対応 */
+        z-index: -1;
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+        .table-container table th:first-child,
+        .table-container table td:first-child {
+            border-left: 1px solid #d0d0d0; /* ボーダー左を消しているので、最左だけボーダー追加 */
+        }

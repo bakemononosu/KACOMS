@@ -1,0 +1,34 @@
+﻿thead tr, tbody tr {
+    white-space: nowrap;
+}
+
+.form-check-input {
+    margin-left: -1.5em;
+}
+i {
+    width: 45%;
+}
+
+.sub-container h3 {
+    margin-bottom: 20px;
+}
+
+.content-main {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.w-60p {
+    width: 60%;
+}
+
+.h-87vh {
+    height:87vh;
+}
+
+.scrole-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+}

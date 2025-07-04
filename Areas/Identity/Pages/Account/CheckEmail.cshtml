@@ -1,0 +1,30 @@
+﻿@page "{request?}/{role?}"
+@model ElsWebApp.Areas.Identity.Pages.Account.CheckEmailModel
+@using ElsWebApp.Services
+@{
+    Layout = "../../../Views/Shared/_SimpleLayout";
+}
+
+<img src="@ConstService.PathInfo.PATH_SYSTEM_LOGO" style="height:60px; object-fit:cover;" />
+<div class="row block-center mt-5">
+    <div class="col-sm-8 col-md-4">
+        <section>
+            <form id="checkEmailForm" method="post">
+                <div class="d-flex justify-content-center"><h3>@Model.Title</h3><h3>申請</h3></div>
+                <hr class="mt-0 mb-1"/>
+                <div class="mt-5">
+                    <h4>メールアドレスを入力し申請ボタンをクリックしてください。</h4>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3 mt-5">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email">Eメールアドレス</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <input asp-for="@Model.RequestType" type="hidden" />
+                </div>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">申請</button>
+            </form>
+        </section>
+    </div>
+</div>

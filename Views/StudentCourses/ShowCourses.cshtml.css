@@ -1,0 +1,51 @@
+﻿
+
+.detail-area {
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.table-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+
+.card-course {
+    text-align: center;
+}
+
+.card-action {
+    text-align: center;
+}
+
+.card-status {
+    text-align: center;
+}
+
+/* 受講・解除ボタン活性 */
+.play-on {
+    text-decoration: none;
+}
+    .play-on:hover {
+        color: var(--selectd-icon-color);
+        background-color: var(--selectd-icon-color);
+    }
+
+/* 受講・解除ボタン非活性 */
+.play-off {
+    text-decoration: none;
+    pointer-events: none;
+}
+
+
+.text-ellipsis {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

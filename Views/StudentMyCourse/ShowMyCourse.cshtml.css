@@ -1,0 +1,51 @@
+﻿.table-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.detail-area {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.coursename {
+    text-align: center;
+}
+
+.progress {
+    height: 15px;
+    
+}
+
+.progress-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shinchoku {
+    margin: auto;
+    position: relative;
+    
+}
+
+.card-chapter {
+    width: auto;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.progressrate {
+    text-align: center;
+}
+
+
+.text-ellipsis {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

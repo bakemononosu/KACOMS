@@ -1,0 +1,172 @@
+﻿.content-main {
+    margin-left: 1.25rem;
+    padding-right:1.25rem;
+}
+
+.accordion {
+    max-width: 60%;
+    min-width: 405px;
+    border: solid 1px lightgray;
+    border-radius: 0.25rem;
+}
+
+.accordion-button {
+    min-width: 403px;
+    height: 10px
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .input-container label {
+        margin-right: 5px;
+        min-width: 80px;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+.search-area-left {
+    padding-right: 0px;
+}
+    .search-area-left .input-container label {
+        min-width: 70px;
+    }
+
+.search-area-right {
+    margin-right: 10px;
+}
+
+#blankLine {
+    visibility: collapse;
+}
+
+.button-container {
+    text-align: end;
+    line-height: 1.5;
+    padding-top: .375rem;
+    padding-bottom: .375rem;
+}
+
+.grid-title {
+    display: flex;
+    align-items: center;
+}
+
+.bi-plus-square-fill {
+    color: orange;
+    vertical-align: super;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.span-icon {
+    cursor: pointer;
+    color: #007bff;
+}
+
+thead tr, tbody tr {
+    white-space: nowrap;
+}
+
+    thead tr {
+        text-align:center;
+    }
+
+    .table-container {
+        overflow: auto;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    .table-container table {
+        width: 100%;
+    }
+
+    .table-container td {
+        text-align: left;
+    }
+
+.form-switch {
+    display: inline-block;
+}
+
+.form-check-input {
+    width: 40px;
+}
+
+[class^="mw-px-"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+    [class^="mw-px-"]:active {
+        text-overflow: clip;
+        white-space: normal;
+        word-break: break-all;
+    }
+
+.mw-px-90 {
+    max-width: 90px;
+    width: 5%;
+}
+
+.mw-px-150 {
+    max-width: 170px;
+    width: 10%;
+}
+
+.mw-px-200 {
+    max-width: 200px;
+    width: 15%;
+}
+
+.mw-px-450 {
+    max-width: 450px;
+    width: 20%;
+}
+
+.blk_update {
+    display: flex;
+    justify-content: right;
+    max-width: 100%;
+}
+
+/* 一覧スクロール ヘッダ固定 */
+.table-container table {
+    border-collapse: separate; /* 二重ボーダー：ボーダーが固定されない対応 */
+    border-spacing: 0px;
+    border-left: 1px solid #ffffff; /* ボーダー重複を防ぐため左だけを消す */
+}
+
+    .table-container table th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+    }
+
+        .table-container table th::before { /* ヘッダ部の上下ボーダーが消える対応 */
+            content: "";
+            position: absolute;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0px;
+        }
+
+    .table-container table td { /* データ部の上下ボーダーが消える対応 */
+        z-index: -1;
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+        .table-container table th:first-child,
+        .table-container table td:first-child {
+            border-left: 1px solid #d0d0d0; /* ボーダー左を消しているので、最左だけボーダー追加 */
+        }

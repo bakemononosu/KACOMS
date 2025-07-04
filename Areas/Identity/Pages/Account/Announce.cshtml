@@ -1,0 +1,27 @@
+﻿@page
+@model ElsWebApp.Areas.Identity.Pages.Account.AnnounceModel
+@using ElsWebApp.Services
+@{
+    Layout = "../../../Views/Shared/_SimpleLayout";
+}
+
+<img src="@ConstService.PathInfo.PATH_SYSTEM_LOGO" style="height:60px; object-fit:cover;" />
+<div class="row block-center mt-5">
+    <div class="col-sm-8 col-md-4">
+        @if (Model.MessageType == "ConfirmMail") {
+            <h4>メールを送信しました。</h4>
+            <h4>メールに記載されているURLにアクセスし、@Model.ProcMessage を完了してください。</h4>
+        }
+        else if (Model.MessageType == "RegisterDone")
+        {
+            <h4>@Model.ProcMessage が完了しました。</h4>
+            <h4>ログインが許可されるまでしばらくお待ちください。</h4>
+        }
+        else if (Model.MessageType == "AlreadyDone")
+        {
+            <h4>@Model.ProcMessage が完了しました。</h4>
+            <h4><a href="@Model.UrlLink">こちら</a>からログインしてください。</h4>
+        }
+    </div>
+</div>
+

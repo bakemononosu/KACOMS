@@ -1,0 +1,82 @@
+﻿@using ElsWebApp.Models
+@model TestStatusViewModel
+@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <div class="accordion d-flex" id="accordionSearch">
+            <div class="accordion-item">
+                <div class="accordion-header" id="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="adjustTableHeight(this)">
+                        検索条件
+                    </button>
+                </div>
+                <form method="POST" asp-controller="AdminTestStatus" asp-action="SearchTestStatus">
+                    <div id="collapseOne" class="accordion-collapse collapse show mt-2 mr-2" data-bs-parent="#accordionSearch">
+                        @if (Model.CourseStudentTestStatusList != null)
+                        {
+                            <div class="d-flex">
+                                <div class="input-container searchInput">
+                                    <label>法人名:</label>
+                                    <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.CourseStudentTestStatusList[0].CompanyName" readonly>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="input-container searchInput">
+                                    <label>受講者名:</label>
+                                    <input class="form-control" type="text" id="userName" name="userName" value="@Model.CourseStudentTestStatusList[0].UserName" readonly>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-container col-12 col-sm-10">
+            @if (Model.CourseStudentTestStatusList != null)
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>コース名</th>
+                            <th>タイトル</th>
+                            <th>実施日時</th>
+                            <th>得点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            string? lastCourseName = null;
+                        }
+                        @foreach (var item in Model.CourseStudentTestStatusList)
+                        {
+                            <tr>
+                                <td id="courseName">
+                                    @if (item.CourseName != lastCourseName)
+                                    {
+                                        @item.CourseName
+                                    }
+                                </td>
+                                <td id="chapterName">@item.ChapterName</td>
+                                <td id="implementationDateTime">@item.実施日時</td>
+                                <td id="score">@item.得点</td>
+                            </tr>
+                            lastCourseName = item.CourseName;
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <form method="POST" asp-controller="AdminTestStatus" asp-action="SearchTestStatus" id="returnSearchedKeyWords">
+            <input type="hidden" id="userId" name="userId" />
+            <input type="hidden" id="enteredCompanyName" name="companyName" value="@Model.UserEnteredCorporateName" />
+            <input type="hidden" id="enteredCourse" name="courseId" value="@Model.UserEnteredCourse" />
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/AdminTestStatus.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+}

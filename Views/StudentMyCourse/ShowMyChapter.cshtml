@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model StudentMyCourseViewModel
+
+
+<div class="sub-container">
+
+    <div class="detail-area">
+        <div class="table-container">
+            <div class="row g-4">
+
+                @if (Model.MyChapterList != null)
+                {
+                    var idx = 0;
+                    @foreach (var data in Model.MyChapterList)
+                    {
+                        var title = (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_MOVIE)? "講座名" : "テスト名";
+                        idx++;
+                        <div class="col-12 col-lg-6 pe-4">
+                            <div class="card h-100">
+
+                                <div class="card-body pt-1">
+
+                                    <div class="row">
+                                        <div class="col-12 card-chapter">
+                                            <small class="text-body-secondary">
+                                                セクション
+                                                @(data.OrderNo.HasValue ? string.Format("{0:D2}", data.OrderNo) : "")
+                                            </small>
+
+                                        </div>
+
+                                        <div class="col-10 card-main">
+                                            <div class="row">
+                                                <div class="d-none d-md-block col-md-3 col-xl-2" style="overflow:hidden;">@title</div>
+                                                <h5 class="col-12 col-md-9 col-xl-10 text-ellipsis">@data.ChapterName</h5>
+                                                <div class="d-none d-md-block col-md-3 col-xl-2">開始日</div>
+                                                <div class="d-none d-md-block col-md-3 col-xl-4">
+                                                    @(data.StartDatetime.HasValue ? data.StartDatetime.Value.ToString("yyyy/MM/dd") : "----/--/--")
+                                                </div>
+                                                <div class="d-none d-md-block col-md-3 col-xl-2">終了日</div>
+                                                <div class="d-none d-md-block col-md-3 col-xl-4">
+                                                    @(data.EndDatetime.HasValue ? data.EndDatetime.Value.ToString("yyyy/MM/dd") : "----/--/--")
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-2 card-play align-bottom">
+                                            @*学習コンテンツ*@
+                                            @{
+                                                var ignore = "";
+                                                var color = "";
+                                                var tabIdx = idx.ToString();
+                                                if (data.DeletedFlg)
+                                                {
+                                                    ignore = "pe-none";
+                                                    color = "a-ignore";
+                                                    tabIdx = "-1";
+                                                }
+
+                                                if (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_MOVIE)
+                                                {
+                                                    <a href="/StudentMyCourse/ShowVideoContents/@Model.UserId/@Model.CourseId/@data.ChapterId" class="play-icon @ignore @color" tabindex="@tabIdx"><i class="bi bi-play-circle xlg-font"></i></a>
+                                                }
+                                                else if (data.ContentsType == ConstService.SystemCode.SYSCODE_CON_TEST)
+                                                {
+                                                    <a href="/StudentMyCourse/ConfirmExamination/@Model.UserId/@Model.CourseId/@data.ChapterId" class="play-icon @ignore @color" tabindex="@tabIdx"><i class="bi bi-journal-check xlg-font"></i></a>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 card-status">
+                                            @*学習状況*@
+                                            @if (data.Status == ConstService.SystemCode.SYSCODE_STS_COMPLETE)
+                                            {
+                                                <span class="badge rounded-pill bg-success width-100">@data.StatusName</span>
+                                            }
+                                            else if (data.Status == ConstService.SystemCode.SYSCODE_STS_STUDYING)
+                                            {
+                                                <span class="badge rounded-pill bg-primary width-100">@data.StatusName</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge rounded-pill bg-secondary width-100">@data.StatusName</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/StudentMyCourse.js" asp-append-version="true" charset="shift_jis"></script>
+}

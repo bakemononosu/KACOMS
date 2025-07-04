@@ -1,0 +1,15 @@
+﻿.content-main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    height: 80vh;
+}
+
+.form-group {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.row {
+    padding-left: calc(var(--bs-gutter-x)* .5);
+}

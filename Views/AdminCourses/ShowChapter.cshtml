@@ -1,0 +1,328 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using ElsWebApp.Services;
+@model ShowChapterViewModel
+@{
+    Layout = "_BaseLayout";
+
+    // 学習コンテンツ区分の選択
+    var checkVideo = string.Empty;
+    var checkTest = string.Empty;
+    if (Model.ContentsType == ConstService.SystemCode.SYSCODE_CON_MOVIE)
+    {
+        checkVideo = "checked";
+    }
+    else if (Model.ContentsType == ConstService.SystemCode.SYSCODE_CON_TEST)
+    {
+        checkTest = "checked";
+    }
+
+    // 学習コンテンツ区分(動画/テスト)の活性制御
+    var disableContentsType = string.Empty;
+    if (Model.ContentsId != Guid.Empty)
+    {
+        disableContentsType = "disabled";
+    }
+
+    // 学習コンテンツ区分(動画/テスト)の表示制御
+    var dispVideoSelector = string.Empty;
+    var dispContentsVideo = "d-none";
+    var dispContentsTest = "d-none";
+    if ((Model.ContentsId != Guid.Empty) && (checkVideo != ""))
+    {
+        dispVideoSelector = "d-none";
+        dispContentsVideo = string.Empty;
+        dispContentsTest = "d-none";
+    }
+    else if ((Model.ContentsId != Guid.Empty) && (checkTest != ""))
+    {
+        dispVideoSelector = "d-none";
+        dispContentsVideo = "d-none";
+        dispContentsTest = string.Empty;
+    }
+
+    // 受講ユーザのあるコースによる活性制御
+    var disableIsExistsUserCourse = string.Empty;
+    if (Model.IsExistsUserCourse == 1)
+    {
+        disableIsExistsUserCourse = "disabled";
+    }
+}
+
+<div class="sub-container">
+    <!--共通部分-->
+    <div class="row ms-0 me-0">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7 ">
+            <div class="common">
+                <div class="row ms-0 mt-3 p-0">
+                    <div class="col-3 col-sm-3 col-md-3 col-lg-4 col-xl-4 text-middle">
+                        <label asp-for="ChapterName">セクション名</label>
+                    </div>
+                    <div class="col-9 col-sm-9 col-md-9 col-lg-8 col-xl-8">
+                        <input type="text" maxlength="64" title="必須・64文字以内で入力して下さい" asp-for="ChapterName" class="form-control" value="@Model.ChapterName" required />
+                    </div>
+                </div>
+                <div class="row ms-0 mt-3 p-0">
+                    <div class="col-3 col-sm-3 col-md-3 col-lg-4 col-xl-4 text-middle">
+                        <label>学習コンテンツ</label>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4 text-nowrap">
+                        <div class="d-flex justify-content-around fieldset">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="contentsType" value="@ConstService.SystemCode.SYSCODE_CON_MOVIE" @checkVideo @disableContentsType />
+                                <label class="form-check-label" for="check_video">動画</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="contentsType" value="@ConstService.SystemCode.SYSCODE_CON_TEST" @checkTest @disableContentsType />
+                                <label class="form-check-label" for="check_test">テスト</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 col-sm-3 col-md-4 col-lg-4 col-xl-4">
+                        <div class="row">
+                            <div class="col-6 text-middle text-nowrap">
+                                <label asp-for="OrderNo">学習順序</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" pattern="^\d+$" title="半角数字、且つ1～99の範囲で入力して下さい。" asp-for="OrderNo" class="form-control" value="@Model.OrderNo" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <div class="row ms-0 me-0 mt-2 mt-sm-2 mt-md-3 mt-lg-3 mt-xl-4 h-75">
+        <!-- 動画ファイル選択 -->
+        <div class="row ms-0 h-25 @dispVideoSelector" id="select_file">
+            <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
+                <div class="drop-area text-center" id="drop_area">
+                    <h5 class="text-middle">ここに動画ファイル(mp4)をドロップしてください</h5>
+                    <h5 class="text-middle">または</h5>
+                    <button type="button" class="btn btn-primary" id="browse_file">ファイル選択</button>
+                </div>
+            </div>
+        </div>
+        <!-- 動画再生 -->
+        <div class="row ms-0 me-0 @dispContentsVideo" id="play_video">
+            <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
+                <video controls class="" id="player"></video>
+                <row class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary btn-sm" id="clear_video">クリア</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="register_video">登録</button>
+                </row>
+            </div>
+            <input type="hidden" id="v_old_contents_name" value="@Model.VideoOld.ContentsName">
+            <input type="hidden" id="v_old_contents_path" value="@Model.VideoOld.ContentsPath">
+            <input type="hidden" id="v_old_playback_time" value="@Model.VideoOld.PlaybackTime">
+            <input type="hidden" id="v_new_contents_name" value="@Model.VideoNew.ContentsName">
+            <input type="hidden" id="v_new_contents_path" value="@Model.VideoNew.ContentsPath">
+            <input type="hidden" id="v_new_playback_time" value="@Model.VideoNew.PlaybackTime">
+        </div>
+        <div class="row @dispContentsTest" id="take_exam">
+            <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
+                <div class="row">
+                    <div class="col-6 d-flex text-middle">
+                        <label asp-for="Exam.Questions" class="w-50">出題数</label>
+                        <input type="text" pattern="^\d+$" title="半角数字、且つ1～999の範囲以下で入力して下さい。" asp-for="Exam.Questions" class="form-control w-25" value="@Model.Exam.Questions" disabled="@(disableIsExistsUserCourse == "disabled")" />
+                    </div>
+                    <div class="col-6 d-flex text-middle">
+                        <label asp-for="Exam.LimitTime" class="w-50">制限時間</label>
+                        <input type="text" pattern="^\d+$" title="半角数字、且つ0～3600以下で入力して下さい。" asp-for="Exam.LimitTime" class="form-control w-25" value="@Model.Exam.LimitTime" disabled="@(disableIsExistsUserCourse == "disabled")" />
+                        &nbsp;秒
+                    </div>
+                </div>
+                <div class="row mt-2 mt-ms-4">
+                    <div class="d-flex justify-content-between">
+                        <h5>テスト一覧　<i class="bi bi-plus-square-fill gc-plus-icon @disableIsExistsUserCourse"></i></h5>
+                        <div class="d-flex pt-2" id="register_num"><h6>登録数&nbsp;:&nbsp;@Model.Exam.QuestionList.Count</h6></div>
+                    </div>
+                    <div class="exam-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="th-edit"><h6>編集</h6></th>
+                                    <th class="th-q-no"><h6>問題識別番号</h6></th>
+                                    <th class="th-title"><h6>タイトル</h6></th>
+                                    <th class="th-format"><h6>出題形式</h6></th>
+                                    <th class="th-level"><h6>難易度</h6></th>
+                                    <th class="th-score"><h6>点数</h6></th>
+                                    <th class="d-none"><h6>問題カタログ識別子</h6></th>
+                                </tr>
+                            </thead>
+                            <tbody id="exam_body">
+                                @{
+                                    var idx = 0;
+                                }
+                                @foreach (var quest in Model.Exam.QuestionList)
+                                {
+                                    <tr id="r_@idx">
+                                        <td class="td-edit"><i class="bi bi-trash3 span-icon @disableIsExistsUserCourse" @(disableIsExistsUserCourse == "disabled" ? "" : $"onclick=deleteQuestion(r_{@idx})")></i>&nbsp;&nbsp;<i class="bi bi-clipboard-check span-icon" onclick="displayQAnswers(r_@idx)"></i></td>
+                                        <td class="td-q-no text-center">@quest.QNo</td>
+                                        <td class="td-title">@quest.QTitle</td>
+                                        <td class="td-format">@quest.QType</td>
+                                        <td class="td-level">@quest.QLevel</td>
+                                        <td class="td-score">@quest.QScore</td>
+                                        <td class="d-none">@quest.QId</td>
+                                    </tr>
+                                    idx++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="hidden" id="t_contents_name" value="@Model.Exam.ContentsName">
+                </div>
+                <div class="row mt-2">
+                    <div class="col d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary" id="register_exam">登録</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 問題カタログ選択ダイアログ -->
+<div id='modal_q_selector' class='modal fade' tabindex='-1'>
+    <div class='modal-dialog modal-dialog-centered modal-xl'>
+        <div class='modal-content '>
+            <div class='modal-body' style="height:680px;padding-top:5px;">
+                <div class="row mt-0 mt-sm-1">
+                    <div class="col d-flex justify-content-end" style="font-size:0.9rem;">
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close' id='modal_close_btn'></button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-4 d-flex text-middle">
+                                <label class="text-nowrap" asp-for="MajorList">大分類&nbsp;</label>
+                                <select class="form-select" asp-items="@Model.MajorList" id="modal_q_major" required></select>
+                            </div>
+                            <div class="col-4 d-flex text-middle">
+                                <label class="text-nowrap" asp-for="MiddleList">中分類&nbsp;</label>
+                                <select class="form-select" asp-items="@Model.MiddleList" id="modal_q_middle"></select>
+                            </div>
+                            <div class="col-4 d-flex text-middle">
+                                <label class="text-nowrap" asp-for="MinorList">小分類&nbsp;</label>
+                                <select class="form-select" asp-items="@Model.MinorList" id="modal_q_minor"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary" id="modal_q_search">検索</button>
+                    </div>
+                </div>
+                <div class="row mt-2 mt-sm-4">
+                    <div class="col d-flex justify-content-center">
+                        <div class="modal-q-cat-list">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="th-edit"><input type="checkbox" class="form-check-input" id="select_all" /></th>
+                                        <th class="th-q-no"><h6>問題識別番号</h6></th>
+                                        <th class="th-title"><h6>タイトル</h6></th>
+                                        <th class="th-format"><h6>出題形式</h6></th>
+                                        <th class="th-level"><h6>難易度</h6></th>
+                                        <th class="th-score"><h6>点数</h6></th>
+                                        <th class="d-none"><h6>問題カタログ識別子</h6></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal_q_body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 mt-sm-5">
+                    <div class="col d-flex justify-content-end">
+                        <button type="button" class="btn btn-warning" id="modal_q_refrect">反映</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 問題カタログ表示ダイアログ -->
+<div id='modal_q_reference' class='modal fade' tabindex='-1'>
+    <div class='modal-dialog modal-dialog-centered modal-lg'>
+        <div class='modal-content '>
+            <div class='modal-body pt-1'>
+                <div class="row">
+                    <div class="col d-flex justify-content-end">
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close' id='modal_close_btn'></button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3 col-lg-2">
+                        <label class="text-nowrap pe-0">問題識別番号&nbsp;</label>
+                    </div>
+                    <div class="col-9 col-lg-3">
+                        <input type="text" id="modal_q_ref_no" disabled readonly />
+                    </div>
+                    <div class="col-3 col-lg-2 mt-2 mt-lg-0">
+                        <label class="text-nowrap">タイトル&nbsp;</label>
+                    </div>
+                    <div class="col-9 col-lg-5 mt-2 mt-lg-0">
+                        <input type="text" class="w-100" id="modal_q_ref_title" disabled readonly>
+                    </div>
+                </div>
+                <div class="row mt-2 mt-ms-3">
+                    <div class="col-3 col-lg-2">
+                        <label class="text-nowrap">問題文&nbsp;</label>
+                    </div>
+                    <div class="col-9 col-lg-10">
+                        <input type="text" class="w-100" id="modal_q_ref_text" multiple disabled readonly>
+                    </div>
+                </div>
+                <div class="row mt-2 mt-ms-3 d-none" id="modal_q_ref_image">
+                    <div class="col-3 col-lg-2">
+                    </div>
+                    <div class="col-9 col-lg-10">
+                        <img style="max-width:100%;height:auto" />
+                    </div>
+                </div>
+                <div class="row mt-2 mt-lg-5">
+                    <div class="col d-flex justify-content-center">
+                        <div class="modal-q-ref-alist">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="th-ans"><h6>解答文</h6></th>
+                                        <th class="th-collect"><h6>正解</h6></th>
+                                        <th class="th-exp"><h6>解説文</h6></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal_q_ref_abody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form method="POST" asp-action="RegisterChapter" asp-antiforgery="true" enctype="multipart/form-data">
+    <input type="file" class="d-none" id="video_file" accept=".mp4">
+    <input type="hidden" name="ShowChapterViewModel" id="post_params" value="" />
+</form>
+
+<input type="hidden" id="contents_video" value="@ConstService.SystemCode.SYSCODE_CON_MOVIE" />
+<input type="hidden" id="contents_test" value="@ConstService.SystemCode.SYSCODE_CON_TEST" />
+<input type="hidden" id="video_mime_type" value="@ConstService.MovieContens.TARGET_MIME_TYPE" />
+<input type="hidden" id="course_id" value="@Model.CourseId" />
+<input type="hidden" id="chapter_id" value="@Model.ChapterId" />
+<input type="hidden" id="contents_id" value="@Model.ContentsId" />
+
+@section Scripts {
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+    <script src="~/js/hls.js"></script>
+    <script src="~/js/HlsVideo.js" asp-append-version="true"></script>
+    <script src="~/js/ShowChapter.js" asp-append-version="true"></script>
+}

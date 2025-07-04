@@ -1,0 +1,45 @@
+﻿body {
+}
+
+header {
+    position: sticky;
+    top: 0px;
+    z-index: 9;
+    background: var(--header-bg-color);
+}
+
+header img {
+    mix-blend-mode: multiply;
+}
+
+.logo {
+    background: var(--offcanvas-hd-bg-color);
+}
+
+.logo img {
+    mix-blend-mode: multiply;
+}
+
+.menu {
+    background: var(--menu-bg-color);
+    display: var(--menu-display);
+}
+
+.menu-list {
+    width: 85%;
+}
+
+.btn-logout {
+    display: var(--menu-display);
+}
+
+.link-logout {
+    font-size: 1.0rem;
+    text-decoration: none;
+}
+
+.link-logout:hover {
+    cursor: pointer;
+}
+
+

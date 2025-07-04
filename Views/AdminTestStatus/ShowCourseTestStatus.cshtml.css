@@ -1,0 +1,134 @@
+﻿thead tr, tbody tr {
+    white-space: nowrap;
+}
+
+i {
+    width: 45%;
+}
+
+.content-main {
+    margin-left: 1.25rem;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .input-container label {
+        margin-right: 5px;
+        min-width: 80px;
+        text-align: right;
+    }
+
+.button-container {
+    height: 100%;
+    margin: 0 auto;
+    padding: 0.15rem;
+}
+
+.accordion {
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    min-width: 409px;
+    width: 45%;
+}
+
+.accordion-button {
+    width: 100%;
+    height: 10px
+}
+
+.searchInput,
+.courseSelect {
+    width: 80%;
+}
+
+@media (max-width:1660px) {
+    .searchInput,
+    .courseSelect {
+        width: 75%;
+    }
+}
+
+tr th {
+    text-align: center;
+}
+
+.table-container {
+    overflow: auto;
+}
+
+    .table-container td {
+        text-align: center;
+    }
+
+#names {
+    width: 200px;
+    min-width: 200px;
+    text-align: left;
+}
+
+#link_user {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#company {
+    max-width: 400px;
+    width: 30%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+    #company:active {
+        text-overflow: clip;
+        white-space: normal;
+        word-break: break-all;
+    }
+
+#score {
+    max-width:70px;
+}
+
+/* 一覧スクロール ヘッダ固定 */
+.table-container table {
+    border-collapse: separate; /* 二重ボーダー：ボーダーが固定されない対応 */
+    border-spacing: 0px;
+    border-left: 1px solid #ffffff; /* ボーダー重複を防ぐため左だけを消す */
+}
+
+    .table-container table th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+    }
+
+        .table-container table th::before { /* ヘッダ部の上下ボーダーが消える対応 */
+            content: "";
+            position: absolute;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0px;
+        }
+
+    .table-container table td { /* データ部の上下ボーダーが消える対応 */
+        z-index: -1;
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+        .table-container table th:first-child,
+        .table-container table td:first-child {
+            border-left: 1px solid #d0d0d0; /* ボーダー左を消しているので、最左だけボーダー追加 */
+        }

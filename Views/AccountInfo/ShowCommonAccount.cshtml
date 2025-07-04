@@ -1,0 +1,105 @@
+﻿@{
+    var studentFlgDNone = Model.StudentFlg == "true" ? "d-none" : "";
+    var studentButtomPosition = Model.StudentFlg == "true" ? "col-md-5 col-sm-10" : " col-md-10 col-sm-10";
+    var rowWidth = Model.StudentFlg == "true" ? "HOGE" : "";
+    var studentFlgDNonere = Model.StudentFlg != "true" ? "d-none" : "";
+    var studentFlgDFlexJce = Model.StudentFlg == "true" ? "d-flex justify-content-end" : "";
+    var selectAttributes = Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO ? true : false;
+    var inputAttributes = Model.StudentFlg == "true" ? "disabled" : "";
+    if (Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO)
+    {
+        inputAttributes = "disabled";
+    }
+
+    var studentFlgDFlexJcs = Model.StudentFlg != "true" ? "" : "d-flex justify-content-start";
+    var searchEmail = Model.SearchDataForMUser?.Email != null ? "" : "d-none";
+    var updateOrInsert = Model.SearchDataForMUser?.Email != null ? "'update'" : "'insert'";
+}
+
+@using ElsWebApp.Models.Entitiy
+@using ElsWebApp.Services
+@model UserInfoViewModel
+
+<div class="content-main scrole-container">
+    <form method="POST"></form>
+    <div class="row">
+        <div class="col-md-5 col-sm-10 @studentFlgDNone">
+            <div class="form-group mt-2 @studentFlgDNone">
+                <label for="availableFlgPersonal">受講可否:</label>
+                <select class="form-select" asp-items="@Model.AvailableList" name="availableFlgPersonal" id="availableFlgPersonal" value="@Model.SearchDataForMUser?.AvailableFlg">
+                    <option value="" disabled class="d-none"></option>
+                </select>
+            </div>
+            <div class="form-group mt-2 @studentFlgDNone">
+                <label for="userRolePersonal">管理グループ:</label>
+                <select class="form-select" asp-items="@Model.RolesList" name="userRolePersonal" id="userRolePersonal" value="@Model.UserRole" disabled=@selectAttributes>
+                    <option value="" disabled class="d-none"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-10">
+            <div class="form-group mt-2">
+                <label for="emailPersonal">ユーザID（メールアドレス）:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.LoginId" name="emailPersonal" class="form-control" id="emailPersonal" @(Model.SearchDataForMUser?.LoginId != null ? "disabled" : "") />
+            </div>
+            <div class="form-group hidden">
+                <input type="hidden" value="@Model.SearchDataForMUser?.UserId" name="userIdPersonal" class="form-control" id="userIdPersonal" />
+            </div>
+            <div class="form-group mt-2">
+                <label for="userNamePersonal">氏名:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.UserName" name="userNamePersonal" class="form-control" id="userNamePersonal" />
+            </div>
+            <div class="form-group mt-2">
+                <label for="companyNamePersonal">法人名:</label>
+                <input class="form-control"
+                       type="text"
+                       value="@(Model.UserEnteredCorporateName ?? Model.SearchDataForMUser?.CompanyName)"
+                       name="companyNamePersonal"
+                       id="companyNamePersonal"
+                @inputAttributes />
+            </div>
+            <div class="form-group mt-2">
+                <label for="departmentNamePersonal">部署名:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.DepartmentName" name="departmentNamePersonal" class="form-control" id="departmentNamePersonal" />
+            </div>
+            <div class="form-group mt-2 @studentFlgDNone">
+                <label for="employeeNoPersonal">社員番号:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.EmployeeNo" name="employeeNoPersonal" class="form-control" id="employeeNoPersonal" />
+            </div>
+            <div class="form-group mt-2 @studentFlgDNone">
+                <label for="remarks1Personal">備考-1:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.Remarks1" name="remarks1Personal" class="form-control" id="remarks1Personal" />
+            </div>
+            <div class="form-group mt-2 @studentFlgDNone">
+                <label for="remarks2Personal">備考-2:</label>
+                <input type="text" value="@Model.SearchDataForMUser?.Remarks2" name="remarks2Personal" class="form-control" id="remarks2Personal" />
+            </div>
+            <div class="form-group mt-2 d-flex">
+                <div class="form-check">
+                    <input type="checkbox" name="passwordChangeRequest" class="form-check-input" id="passwordChangeRequest" @(Model.SearchDataForMUser?.Email != null ? "" : "disabled") />
+                </div>
+                <label class="form-check-label" for="passwordChangeRequest">パスワード変更申請</label>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-10"></div>
+
+        <div class="d-flex @studentButtomPosition justify-content-between mt-2">
+            <div>
+                <button type="submit" class="btn btn-secondary @studentFlgDNone btn-c6" onclick="ShowAccounts(`@Model.SearchDataForMUser?.UserId`)">キャンセル</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger @searchEmail btn-c6" onclick="deleteAccountForDetail('@Model.SearchDataForMUser?.UserId')">削除</button>
+                <button type="button" class="btn btn-primary btn-c6" onclick="newUserUpdateOrInsert(@updateOrInsert)">登録</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="form-group d-none">
+    <label>TempRegisterId:</label>
+    <input type="text" name="tempRegisterId" class="form-control" id="tempRegisterId" value="@Model.SearchDataForMUser?.TempRegisterId" />
+</div>
+
+<input type="hidden" id="studentFlg" name="studentFlg" value="@Model.StudentFlg" />

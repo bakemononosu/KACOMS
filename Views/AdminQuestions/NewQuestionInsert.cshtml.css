@@ -1,0 +1,103 @@
+﻿
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+#dropArea {
+    position: absolute;
+    width: 92%;
+    height: 28%;
+    padding: 10px 0 0;
+    border: 2px dashed #494949;
+    background: rgba(22, 165, 191, 0);
+    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
+    text-align: center; 
+    display: flex;
+    align-items: flex-start; 
+    justify-content: center; 
+}
+
+
+    #dropArea.dragover {
+        border: 2px solid #16a5bf;
+        background: rgba(22, 165, 191, 0.6);
+    }
+
+/*----------------------------------------------------------------チェックボックス↓*/
+/* 横並びにするためのスタイル */
+.answer-options {
+    display: flex;
+    align-items: center;
+}
+
+    .answer-options label {
+        margin-right: 10px; /* ラベルの間隔を調整 */
+    }
+
+    .answer-options input[type="radio"] {
+        margin-right: 5px; /* ラジオボタンの間隔を調整 */
+    }
+
+/*----------------------------------------------------------------チェックボックス↑*/
+.mr-510 {
+    margin-right: 510px;
+}
+
+#dropZone {
+    border: 2px dashed #cccccc;
+    padding: 20px;
+    text-align: center;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mw-700 {
+    max-width: 700px;
+}
+
+.h-800 {
+    height: 800px;
+}
+.o-a {
+    overflow: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+.re-none {
+    resize: none;
+}

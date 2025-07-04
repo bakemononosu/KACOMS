@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+@model StudentMyCourseViewModel
+
+<div class="sub-container">
+    <div class="content-main">
+        <form method="POST"></form>
+        @if (Model.ShowVideoContent != null && Model.ShowVideoContent.MovieContents!.Chapter != null)
+        {
+            <div class="contents">
+                <video @(Model.IsPlayNotAvailable ? "" : "controls") class="video-area" id="videotag"></video>
+                <div class="action">
+                    <button type="button" class="btn btn-outline-info" onclick="ShowPreviousNextChapter('previous')" @(Model.ShowVideoContent.IsFirstContent ? "disabled" : "")>前のセクション</button>
+                    <button type="button" class="btn btn-outline-info" onclick="ShowPreviousNextChapter('next')" @(Model.ShowVideoContent.IsLastContent ? "disabled" : "")>次のセクション</button>
+                </div>
+            </div>
+            <input type="hidden" id="userId" name="userId" value="@Model.ShowVideoContent?.UserId">
+            <input type="hidden" id="courseId" name="courseId" value="@Model.ShowVideoContent?.CourseId">
+            <input type="hidden" id="chapterId" name="chapterId" value="@Model.ShowVideoContent?.ChapterId">
+            <input type="hidden" id="orderNo" name="orderNo" value="@Model.ShowVideoContent?.CurrentOrderNo">
+            <input type="hidden" id="contentsPath" value="@Model.ShowVideoContent?.MovieContents.ContentsPath">
+        }
+        else
+        {
+            <h5>削除済の動画です</h5>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/ShowVideo.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+    <script src="~/js/hls.js"></script>
+    <script src="~/js/HlsVideo.js" asp-append-version="true"></script>
+    <script>
+        const isIos = @Html.Raw(Json.Serialize(Model.IsIOs));
+        if ($('#contentsPath') != undefined) {
+            if (!isIos) {
+                loadVideo($('#videotag').get(0), $('#contentsPath').val());
+            } else {
+                $('#videotag').attr('src', $('#contentsPath').val());
+            }
+        }
+    </script>
+}

@@ -1,0 +1,234 @@
+﻿@{
+    Layout = "_BaseLayout";
+
+    var updateOrInsertFlg = Model.QuestionCatalogData != null ? "'update'" : "'insert'";
+    var disabledFlg = Model.QuestionCatalogData != null ? true : false;
+
+    //1次開発では、出題形式は選択式のみ対応のため。
+    var choiceClassQuestionTypeDisableFlg = true;
+}
+@using ElsWebApp.Models.Entitiy
+@model AdminQuestionsViewModel
+
+
+
+<div class="sub-container" id="sub-container">
+    <div class="main-container flex-column ms-5 me-2 me-sm-4" id="pageShowQuestionIdentifier">
+
+        <div class="col-8">
+            <div class="w- row justify-content-start">
+                <div class="col-6 input-container">
+                    <label>大分類:</label>
+                    <div class="mm-w250500">
+                        <select class="form-select" asp-items="@Model.ClassMajor" name="choiceClassMajor" id="choiceClassMajor" onchange="updateLabel()" disabled=@disabledFlg>
+                            <option value="" disabled selected class="d-none"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6  input-container">
+                    <label>中分類:</label>
+                    <div class="mm-w250500">
+                        <select class="form-select" asp-items="@Model.ClassMiddle" name="choiceClassMiddle" id="choiceClassMiddle" onchange="updateLabel()" disabled=@disabledFlg>
+                            <option value="" disabled selected class="d-none"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="d-flex justify-content-start">
+                <div class="input-container">
+                    <label>小分類:</label>
+                    <div class="mm-w250500">
+                        <select class="form-select" asp-items="@Model.ClassMinor" name="choiceClassMinor" id="choiceClassMinor" onchange="updateLabel()" disabled=@disabledFlg>
+                            <option value="" disabled selected class="d-none"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 container-position">
+            <div class="d-flex align-items-center">
+                <div class="input-container">
+                    <label class="">問題識別番号:</label>
+                    <input type="text" value="" name="identificationNumberPersonal" class="mm-w250500 form-control" id="identificationNumberPersonal" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 pb-2">
+            <div class="d-flex align-items-center">
+                <div class="input-container">
+                    <label class="white-space-nowrap me-2">タイトル:</label>
+                    <input type="text" value="@Model.QuestionCatalogData?.QuestionTitle" name="titlePersonal" class="title-w form-control" id="titlePersonal" maxlength="256" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 pb-2">
+            <div class="d-flex align-items-center">
+                <div class="input-container">
+                    <label class="white-space-nowrap me-2">出題文:</label>
+                    <textarea name="remarks1Personal" class="w-470 form-control " id="questionPersonal" rows="5" maxlength="1024">@Model.QuestionCatalogData?.QuestionText</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 ">
+            <div class="d-flex ">
+                <div class="input-container">
+                    <label class="white-space-nowrap">画像ファイル:</label>
+                    <div class="d-flex" id="btnInputFile">
+                        <input class="d-none" type="file" id="questionImage" accept=".jpg, .jpeg, .png">
+                        <button class="text-nowrap" onclick="document.getElementById('questionImage').click();">ファイル選択</button>
+                        <input type="hidden" name="base64PictureBinaryQuestion" id="base64PictureBinaryQuestion" value="@Model.QuestionCatalogData?.QuestionImageData">
+                        <span class="cursorPointer" id="QuestionFileName" onclick="pictureViewForQuestion()">
+                            @Model.QuestionCatalogData?.QuestionImageName
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex mt-2">
+            <div class="input-container">
+                <label>難易度:</label>
+                <div class="mm-w75120">
+                    <select class="form-select" asp-items="@Model.ClassLevel" name="choiceClassLevel" id="choiceClassLevel">
+                        <option value="" disabled selected class="d-none"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-container ps-3">
+                <label>点数:</label>
+                <input type="text" value="@Model.QuestionCatalogData?.Score" name="choiceScore" class="form-control" id="choiceScore" oninput="validateNumberInput(this);" />
+            </div>
+            <div class="input-container ps-5">
+                <label>出題形式:</label>
+                <div class="mm-w100120">
+                    <select class="form-select " asp-items="@Model.ClassQuestionType" name="choiceClassQuestionType" id="choiceClassQuestionType" disabled=@choiceClassQuestionTypeDisableFlg>
+                        <option value="" disabled class="d-none"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex mt-2">
+            <h6 class="ps-2 mb-1" style="line-height:1.2rem;">
+                選択肢一覧
+                <span class="span-icon marginLeft10_marginBottom5 @(Model.QuestionCatalogData?.UsedFlg == 1 ? "unactive" : "")"
+                @(Model.QuestionCatalogData?.UsedFlg == 1 ? "" : $"onclick=newAnswerInsertModal()")>
+                    <i class="bi bi-plus-square-fill"></i>
+                </span>
+            </h6>
+            <div class="ms-3 ms-lg-5">
+                @{
+                    var status = (Model.QuestionCatalogData? .FixedOrder?? false) ? "checked" : "";
+                }
+                <span class="text-nowrap">選択肢の並び順を固定する</span>
+                <input type="checkbox" class="form-check-input ms-0" id="sort_order_setting" @status />
+            </div>
+        </div>
+
+        <input type="hidden" value="@Model.QuestionCatalogData?.SeqNo" name="seqNoPersonal" class="form-control" id="seqNoPersonal" />
+        <input type="hidden" value="@Model.QuestionCatalogData?.QuestionId" name="questionIdPersonal" class="form-control" id="questionIdPersonal" />
+        <input type="hidden" value="update" name="switchingUpdateOrInsert" id="switchingUpdateOrInsert" />
+
+        <div class="col-12">
+            <div class="table-container h280-ml20 mh-100">
+                <table class="table table-bordered" id="AnswerGroupTableForView">
+                    <thead>
+                        <tr class="white-space-nowrap">
+                            <th class="w-5p">編集</th>
+                            <th class="w-5p">正解</th>
+                            <th>選択肢</th>
+                            <th class="w-5p">画像</th>
+                            <th>解説</th>
+                        </tr>
+                    </thead>
+                    @if (Model.AnswerGroup != null && Model.AnswerGroup.Any())
+                    {
+                        @foreach (var question in Model.AnswerGroup)
+                        {
+                            <tr id="tr_@question.AnswerId">
+                                <td class="text-center w-5p">
+                                    @* 編集 *@
+                                    <span class="span-icon @(Model.QuestionCatalogData?.UsedFlg == 1 ? "unactive" : "")"
+                                    @(Model.QuestionCatalogData?.UsedFlg == 1 ? "" : $"onclick=DeleteFlgChangeFunction('{question.AnswerId}')")>
+                                        <i class="bi bi-trash3"></i>
+                                    </span>
+                                    <span class="span-icon" onclick="showAnswerModalView('@question.AnswerId')">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="form-check d-flex justify-content-center">
+                                        <input type="checkbox" class="form-check-input" id="errataFlag_@question.AnswerId" disabled value="true" @(question.ErrataFlg ? "checked" : "")>@* 正解 *@
+                                    </div>
+                                </td>
+                                <td class="white-pre t-left ps-1" id="answerText">@question.AnswerText</td>@* 選択肢 *@
+                                <td>
+                                    @{
+                                        // AnswerImageDataが存在するかどうかチェック
+                                        if (!string.IsNullOrEmpty(question.AnswerImageData))
+                                        {
+                                        // AnswerImageDataが存在する場合
+                                            <a href="#" class="d-flex justify-content-center" onclick="pictureViewForTable('@question.AnswerImageData')" value="@question.AnswerImageData" id="answerImageData">あり</a>
+                                        }
+                                        else
+                                        {
+                                        // AnswerImageDataが存在しない場合
+                                            <span class="d-flex justify-content-center" value="@question.AnswerImageData" id="answerImageData">なし</span>
+                                        }
+                                    }
+                                </td>@* 画像 *@
+                                <td id="explanationText" class="white-pre t-left ps-1">@question.ExplanationText</td>@* 解説 *@
+                                <td class="d-none">
+                                    <input type="hidden" id="answerImageName" name="answerImageName" value="@question.AnswerImageName">
+                                </td>
+                                <td class="d-none">
+                                    <input type="hidden" id="modalAnswerId" name="modalAnswerId" value="@question.AnswerId">
+                                </td>
+                                <td class="d-none" id="modalDeletedFlgContainer">
+                                    <label id="modalDeletedFlg" name="modalDeletedFlg" value="@question.DeletedFlg">@question.DeletedFlg</label>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="d-none">
+                            <td class="text-center" colspan="6"></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+        <div class="col-12 d-flex">
+            <div class="col-6 d-flex justify-content-start align-content-center">
+                <button type="submit" class="ml-2 btn btn-secondary" onclick=" backToAllQuestionView()">キャンセル</button>
+            </div>
+            <div class="col-6 d-flex justify-content-end align-content-center">
+                <button type="button" class="btn btn-primary" onclick="QuestionUpdate(@updateOrInsertFlg)">登録</button>
+            </div>
+        </div>
+
+        <form method="POST" asp-controller="ShowQuestionsView" id="QuestionSearchData">
+            <input type="hidden" id="choiceClassMajor" name="choiceClassMajor" value="@Model.UserEnteredchoiceClassMajor">
+            <input type="hidden" id="choiceClassMiddle" name="choiceClassMiddle" value="@Model.UserEnteredchoiceClassMiddle">
+            <input type="hidden" id="choiceClassMinor" name="choiceClassMinor" value="@Model.UserEnteredchoiceClassMinor">
+            <input type="hidden" id="QuestionId" name="QuestionId" value="">
+        </form>
+    </div>
+</div>
+<input type="hidden" id="questionPageFlg" name="questionPageFlg" value="true">
+<partial name="~/Views/AdminQuestions/NewQuestionInsert.cshtml" type="hidden" />
+
+@section scripts {
+    <script src="~/js/AdminQuestions.js" asp-append-version="true" charset="shift_jis"></script> @*アカウント情報更新用JS*@
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}
+

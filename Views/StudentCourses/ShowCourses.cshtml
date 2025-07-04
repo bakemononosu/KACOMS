@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model StudentCoursesViewModel
+
+
+<div class="sub-container">
+
+    <div class="detail-area">
+
+        @* マイコース追加・削除 実行用フォーム *@
+        <form method="POST"></form>
+
+        <div class="table-container">
+            <div class="row g-4">
+
+                @if (Model.CourseList != null)
+                {
+                    @foreach (var data in Model.CourseList)
+                    {
+                        <div class="col-12 col-lg-6 pe-4">
+                            <div class="card h-100">
+
+                                <div class="card-body pt-1">
+
+                                    <div class="row">
+                                        <h5 class="col-12 card-course">
+                                            <a class="text-ellipsis" href="/StudentCourses/ShowChapters/@data.CourseId">@data.CourseName</a>
+                                        </h5>
+
+                                        <div class="col-10 card-main">
+                                            <div class="row">
+                                                <div class="col-3">公開期間</div>
+                                                <div class="col-9 card-term">
+                                                    @(data.BegineDateTime.HasValue ? data.BegineDateTime.Value.ToString("yyyy/MM/dd") : "----/--/--")
+                                                    ～
+                                                    @(data.EndDateTime.HasValue ? data.EndDateTime.Value.ToString("yyyy/MM/dd") : "----/--/--")
+                                                </div>
+                                                <div class="col-3" data-bs-toggle="tooltip" data-placement="center" title="@data.CourseExplaination">講座説明</div>
+                                                <div class="col-9  text-truncate">
+                                                    <span>@data.CourseExplaination</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 card-status d-flex justify-content-center align-content-center">
+                                            @*公開フラグ*@
+                                            <h5>
+                                                @if (data.PublicFlg)
+                                                {
+                                                    <span class="badge rounded-pill bg-warning md-icon">@data.PublicName</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge rounded-pill bg-secondary md-icon">@data.PublicName</span>
+                                                }
+                                            </h5>
+                                        </div>
+
+                                        <h3 class="col-12 card-action">
+
+                                            <a href="#" id="add_@data.CourseId"
+                                               onclick="addMyCourse(`@data.CourseId`,'@data.CourseName'); return false;"
+                                               class="badge rounded-pill @(data.AvailableFlg && !data.LearningFlag ? "bg-primary play-on" : "bg-secondary play-off")">受講</a>
+
+                                            <a href="#" id="del_@data.CourseId"
+                                               onclick="deleteMyCourse(`@data.CourseId`,'@data.CourseName', @(data.AvailableFlg ? "true" : "false" )); return false;"
+                                               class="badge rounded-pill @(data.LearningFlag ? "bg-danger play-on" : "bg-secondary play-off")">解除</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/StudentCourses.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}

@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using ElsWebApp.Services
+@model ShowExaminationHistoryViewModel
+@{
+    Layout = "_BaseLayout";
+    var qIdx = 0;
+    var aIdx = 0;
+}
+
+<div class="sub-container">
+    <div class="row h-75">
+        <div class="ms-1 ms-lg-3 col-12 col-md-10 col-xl-8 h-100">
+            @{
+                var pIdx = 1;
+                var displayTab = "";
+                foreach (var tab in Model.ExamHistory) {
+                    var tabId = $"myTab_p{pIdx}";
+                    var contentId = $"myContent_p{pIdx}";
+                    <ul class="nav nav-tabs @displayTab" id="@tabId" role="tablist">
+                        @{
+                            qIdx = 1;
+                            var active = "active";
+                            foreach (var question in Model.ExamHistory[pIdx-1].Questions)
+                            {
+                                var id = $"p_{pIdx}_q{qIdx}_tab";
+                                var target = $"#p_{pIdx}_q{qIdx}_tab_pane";
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link @active" id="@id" data-bs-toggle="tab" data-bs-target="@target" type="button" role="tab" aria-controls="q1_tab_pane" aria-selected="true">問題-@qIdx</button>
+                                </li>
+                                qIdx++;
+                                active = "";
+                            }
+                        }
+                    </ul>
+                    <div class="tab-content p-1 p-md-2 p-xl-3 p-2 p-md-3 p-xl-4 h-75 @displayTab" id="@contentId">
+                        @{
+                            qIdx = 1;
+                            var showActive = "show active";
+                            foreach (var question in Model.ExamHistory[pIdx-1].Questions)
+                            {
+                                var id = $"p_{pIdx}_q{qIdx}_tab_pane";
+                                var target = $"p_{pIdx}_q{qIdx}_tab";
+                                var queText = $"text_p_{pIdx}_q{qIdx}";
+                                var queGuid = $"guid_p_{pIdx}_q{qIdx}";
+                                var queImage = $"img_p_{pIdx}_q{qIdx}";
+                                var isQTextDisplay = (question.QText == "") ? "d-none" : "";
+                                var isQImageDisplay = (question.QImage == "") ? "d-none" : "";
+                                <div class="tab-pane fade @showActive" id="@id" role="tabpanel" aria-labelledby="@target" tabindex="0">
+                                    <div class="card">
+                                        <div class="card-header"><h4>問題</h4></div>
+                                        <div class="card-body @isQTextDisplay" id="@queText">
+                                            <h3>@question.QText</h3>
+                                        </div>
+                                        <div class="card-body @isQImageDisplay" id="@queImage">
+                                            <img src="@question.QImage" style="max-width:100%;height:auto;" />
+                                        </div>
+                                        <div class="d-none" id="@queGuid">@question.QId</div>
+                                    </div>
+                                    <div class="card mt-1 mt-sm-2 mt-md-3 mt-lg-4 mt-xl-5">
+                                        <div class="card-header"><h4>解答</h4></div>
+                                        <ul class="list-group list-group-flush">
+                                            @{
+                                                aIdx = 0;
+                                                foreach (var ans in question.Answers)
+                                                {
+                                                    var statusIcon = (ans.Status == "") ? "" :
+                                                    (ans.Status == ConstService.SystemCode.SYSCODE_ANS_CORRECT) ? "bi bi-check2-circle" : "bi bi-x-circle-fill";
+                                                    var ansId = $"p_{pIdx}_a_{qIdx}_{aIdx}";
+                                                    var ansText = $"text_{pIdx}_{qIdx}_{aIdx}";
+                                                    var ansGuid = $"guid_{pIdx}_{qIdx}_{aIdx}";
+                                                    var checkd = (ans.AValue) ? "checked" : "";
+                                                    var isATextDisplay = (ans.AText == "") ? "d-none" : "";
+                                                    var isAImageDisplay = (ans.AImage == "") ? "d-none" : "";
+                                                    <li class="list-group-item">
+                                                        <div class="row" id="@ansId">
+                                                            <div class="col-1 status-icon"><h3><i class="@statusIcon"></i></h3></div>
+                                                            <div class="col-1"><h3><input type="checkbox" class="form-check-input" @checkd disabled /></h3></div>
+                                                            <div class="col-10" id="@ansText">
+                                                                <h3 class="@isATextDisplay">@ans.AText</h3>
+                                                                <img class="" @isAImageDisplay src="@ans.AImage">
+                                                            </div>
+                                                            <div class="col d-none" id="@ansGuid">@ans.AId</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-2"></div>
+                                                            <div class="col-10 explaine-text">
+                                                                <h3>@ans.EText</h3>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    aIdx++;
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                qIdx++;
+                                showActive = "";
+                            }
+                        }
+                    </div>
+                    displayTab = "d-none";
+                    pIdx++;
+                }
+            }
+            <div class="d-flex justify-content-center p-1 p-lg-2">
+                <partial name="~/Views/Shared/PageController.cshtml" />
+            </div>
+            <div class="col d-flex justify-content-between p-1 p-lg-2">
+                @{
+                    var nextChapter = "disabled";
+                    var prevChapter = "disabled";
+                    nextChapter = (Model.NextChapter.ChapterId != Guid.Empty) ? "" : "disabled";
+                    prevChapter = (Model.PrevChapter.ChapterId != Guid.Empty) ? "" : "disabled";
+                }
+                <button type="button" class="btn btn-info" id="prev_chapter" @prevChapter>前セクション</button>
+                <input type="hidden" id="prev_chapter_id" value="@Model.PrevChapter.ChapterId" />
+                <input type="hidden" id="prev_contents_type" value="@Model.PrevChapter.ContentsType" />
+                <button type="button" class="btn btn-info" id="next_chapter" @nextChapter>次セクション</button>
+                <input type="hidden" id="next_chapter_id" value="@Model.NextChapter.ChapterId" />
+                <input type="hidden" id="next_contents_type" value="@Model.NextChapter.ContentsType" />
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="user_id" value="@Model.UserId" />
+<input type="hidden" id="course_id" value="@Model.CourseId" />
+<input type="hidden" id="chapter_id" value="@Model.ChapterId" />
+<input type="hidden" id="user_chapter_id" value="@Model.UserChapterId" />
+<input type="hidden" id="total_times" value="@Model.ExamHistory.Count()" />
+<input type="hidden" id="contents_type_video" value="@ConstService.SystemCode.SYSCODE_CON_MOVIE" />
+<input type="hidden" id="contents_type_test" value="@ConstService.SystemCode.SYSCODE_CON_TEST" />
+
+<form method="POST" enctype="multipart/form-data" asp-controller="StudentMyCourse" asp-action="GradeAnswers" asp-antiforgery="true" name="form">
+    <input type="hidden" name="json" value="" id="json_param" />
+</form>
+
+@section Scripts {
+    <script src="~/js/PageController.js" asp-append-version="true"></script>
+    <script src="~/js/ShowExaminationHistory.js" asp-append-version="true">
+    </script>
+}

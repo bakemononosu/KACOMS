@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+
+@using ElsWebApp.Models.Entitiy
+@model AdminQuestionsViewModel
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main pt-0">
+        <div class="accordion" id="accordionSearch">
+            <div class="accordion-item">
+                <div class="accordion-header" id="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+                        検索条件
+                    </button>
+                </div>
+                <form method="POST" asp-controller="AdminQuestions" asp-action="SearchActionForQuestion">
+                    <div id="collapseOne" class="accordion-collapse collapse show mt-2 mr-2" data-bs-parent="#accordionSearch">
+                        <div class="row">
+                            <div class="col-12 d-flex">
+                                <div class="col-9">
+                                    <div class="d-flex flex-column">
+                                        <div class="input-container mb-3 pt-3">
+                                            <label>大分類:</label>
+                                            <select class="form-select w-75" asp-items="@Model.ClassMajor" name="choiceClassMajor" id="choiceClassMajor">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="input-container mb-3">
+                                            <label>中分類:</label>
+                                            <select class="form-select w-75" asp-items="@Model.ClassMiddle" name="choiceClassMiddle" id="choiceClassMiddle">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="input-container mb-3">
+                                            <label>小分類:</label>
+                                            <select class="form-select w-75" asp-items="@Model.ClassMinor" name="choiceClassMinor" id="choiceClassMinor">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end mb-2">
+                                    <div class="button-container  justify-content-end align-items-end">
+                                        <div class=" ml-2 pb-1">
+                                            <button class="btn btn-primary btn-sm btn-c6">検索</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="grid-title mt-2 mb-1">
+            <h6 class="mr-2 mb-1">テスト一覧</h6>
+            <span class="span-icon mr-2 mb-1 ml-15" onclick="showQuestionsView()">
+                <i class="bi bi-plus-square-fill"></i>
+            </span>
+        </div>
+        <div class="table-container">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                    <tr class="white-space-nowrap">
+                        <th class="w-5p">編集</th>
+                        <th>問題識別番号</th>
+                        <th>タイトル</th>
+                        <th >出題形式</th>
+                        <th >難易度</th>
+                        <th >点数</th>
+                        <th >登録日付</th>
+                    </tr>
+                </thead>
+                @if (Model.CustomQuestionCatalog != null)
+                {
+                    @foreach (var question in Model.CustomQuestionCatalog)
+                    {
+                        <tr id="tr_@question.QuestionId">
+                            <td class="text-center mw-px-90">
+                                <span class="span-icon @(question.UsedFlg == 1 ? "unactive" : "")"
+                                @(question.UsedFlg == 1 ? "" : $"onclick=deleteQuestionForList('{question.QuestionId}')")>
+                                    <i class="bi bi-trash3"></i>
+                                </span>                          
+                                <span class="span-icon" onclick="showQuestionsView('@question.QuestionId')" >
+                                    <i class="bi bi-pencil-square"></i>
+                                </span>
+                            </td>
+                            <td class="">@question.MajorCd-@question.MiddleCd-@question.MinorCd-@question.SeqNo</td>
+                            <td class="mw-px-450">@question.QuestionTitle</td>
+                            <td class="">@question.QuestionType</td>
+                            <td class="">@question.Level</td>
+                            <td class="">@question.Score</td>
+                            <td class="">@(question.CreatedAt != null ? question.CreatedAt.Value.ToString("yyyy/MM/dd") : "")</td>
+                            <td class="d-none">@question.QuestionId</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+
+    <form method="POST" asp-controller="AdminQuestions" id="QuestionData">
+        <input type="hidden" id="UserEnteredchoiceClassMajor" name="UserEnteredchoiceClassMajor" value="@Model.UserEnteredchoiceClassMajor">
+        <input type="hidden" id="UserEnteredchoiceClassMiddle" name="UserEnteredchoiceClassMiddle" value="@Model.UserEnteredchoiceClassMiddle">
+        <input type="hidden" id="UserEnteredchoiceClassMinor" name="UserEnteredchoiceClassMinor" value="@Model.UserEnteredchoiceClassMinor">
+        <input type="hidden" id="QuestionId" name="QuestionId" value="">
+    </form>
+</div>
+<input type="hidden" id="questionPageFlg" name="questionPageFlg" value="false">
+
+@section scripts {
+    <script src="~/js/AdminQuestions.js" asp-append-version="true" charset="shift_jis"></script> @*アカウント情報更新用JS*@
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}

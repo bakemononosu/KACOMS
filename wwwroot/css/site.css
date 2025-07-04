@@ -1,0 +1,68 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+}
+
+body {
+    margin-bottom: 40px;
+}
+
+.sub-container {
+    position: relative;
+    width:100%;
+    min-height: 820px;
+}
+
+.block-center {
+    display:flex;
+    justify-content:center;
+}
+
+.md-icon {
+    font-size: 1.0rem;
+}
+
+.lg-icon {
+    font-size: 1.3rem;
+}
+
+.md-font {
+    font-size: 1.0rem;
+}
+
+.lg-font {
+    font-size: 1.3rem;
+}
+
+.menu-selected {
+    background-color: var(--bs-info);
+}
+
+.under-contruction {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 150px;
+    transform: translate(-50%,-50%);
+    background-image: url("/logo/under_construction.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+
+.video-area {
+    width: 100%;
+}

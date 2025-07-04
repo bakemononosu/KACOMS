@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <partial name="~/Views/AccountInfo/ShowCommonAccount.cshtml" />
+</div>
+
+@section scripts {
+    <script src="~/js/CsvDownload.js" asp-append-version="true" charset="shift_jis"></script> @*CSVDownload用JS*@
+    <script src="~/js/AccountInfo.js" asp-append-version="true" charset="shift_jis"></script> @*アカウント情報更新用JS*@
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}

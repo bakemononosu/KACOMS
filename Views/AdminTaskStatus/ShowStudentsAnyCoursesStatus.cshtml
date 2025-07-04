@@ -1,0 +1,128 @@
+﻿@using ElsWebApp.Models
+@using ElsWebApp.Services
+@model TaskStatusViewModel
+@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <div class="accordion d-flex" id="accordionSearch">
+            <div class="accordion-item">
+                <div class="accordion-header" id="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        検索条件
+                    </button>
+                </div>
+                <form method="POST" asp-controller="AdminTaskStatus" asp-action="SearchTaskStatus">
+                    <div id="collapseOne" class="accordion-collapse collapse show mt-2 mr-2" data-bs-parent="#accordionSearch">
+                        <div class="d-flex">
+                            <div class="d-flex flex-column col-9 col-xxl-10">
+                                <div class="input-container searchInput">
+                                    <label>法人名:</label>
+                                    @if (Model.UserRole == ConstService.SystemCode.SYSCODE_USR_CORPO)
+                                    {
+                                        <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.CompanyName" readonly>
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" type="text" id="companyName" name="companyName" value="@Model.UserEnteredCorporateName">
+                                    }
+                                </div>
+                                <div class="input-container searchInput">
+                                    <label>受講者名:</label>
+                                    <input class="form-control" type="text" id="userName" name="userName" value="@Model.UserEnteredName">
+                                </div>
+                                <div class="input-container courseSelect">
+                                    <label id="cources">講座名:</label>
+                                    <select class="form-select" asp-items="@Model.CoursesList" class="form-control" name="courseId" id="courseId" data-cource="@Model.UserEnteredCourse">
+                                        <option value="">選択してください</option>
+                                    </select>
+                                </div>
+                                <div class="input-container searchInput">
+                                    <label>進捗率:</label>
+                                    <input class="form-control progress-rate" tyep="text" pattern="[0-9]|[0-9][0-9]|[1][0][0]" maxlength="3" placeholder="0-100" name="minRate" value="@Model.MinRate">
+                                    <div class="text-center ms-2 me-2">～</div>
+                                    <input class="form-control progress-rate" tyep="text" pattern="[0-9]|[0-9][0-9]|[1][0][0]" maxlength="3" placeholder="0-100" name="maxRate" value="@Model.MaxRate">
+                                    <div class="text-center ms-2 me-2">%</div>
+                                </div>
+                            </div>
+                            <div class="button-container col-3 col-xxl-2">
+                                <button class="btn btn-primary btn-sm btn-c6 mb-3">検索</button>
+                                <button type="button" class="btn btn-secondary btn-sm btn-c6" id="download_csv">ダウンロード</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>受講者</th>
+                        <th>メールアドレス</th>
+                        <th>開始日　　終了日</th>
+                        <th>進捗</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.TaskStatusList != null)
+                        @foreach (var task in Model.TaskStatusList)
+                        {
+                            var link = "";
+                            var onclick = "";
+                            if (string.IsNullOrWhiteSpace(task.UserName))
+                            {
+                                link = "link-text";
+                                onclick = $"onclick=showStudentCoursesStatus('{task.UserId}')";
+                            }
+                            <tr id="tr_@task.UserId">
+                                <td id="names">
+                                    <span id="link_user" onclick="showStudentCoursesStatus(`@task.UserId`)">@task.UserName</span>
+                                </td>
+                                <td id="e_mail">
+                                    <span class="@link" @onclick>@task.LoginId</span>
+                                </td>
+                                <td id="period">
+                                    @(task.StartDatetime.HasValue ? task.StartDatetime.Value.ToString("yyyy/MM/dd") : "")
+                                    @(task.StartDatetime.HasValue ? "～" : "")
+                                    @(task.EndDatetime.HasValue ? task.EndDatetime.Value.ToString("yyyy/MM/dd") : "")
+                                </td>
+                                <td id="progress">
+                                    @if (task.ProgressRate == 1)
+                                    {
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success text-dark" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                100%
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="progress" role="progressbar" aria-valuenow="@task.ProgressRate" aria-valuemin="0" aria-valuemax="1">
+                                            <div class="progress-bar overflow-visible text-dark" style="width: @(task.ProgressRate > 0 ? task.ProgressRate * 100 : 0)%;">
+                                                <div class="progress-text">
+                                                    @(task.ProgressRate.HasValue && task.ProgressRate.Value > 0 ? $"{(int)Math.Floor((double)(task.ProgressRate.Value * 100))}%" : "0%")
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+        <form method="POST" asp-controller="AdminTaskStatus" id="searchedKeyWords">
+            <input type="hidden" id="userId" name="userId" />
+            <input type="hidden" id="enteredUserName" name="enteredUserName" value="@Model.UserEnteredName" />
+            <input type="hidden" id="enteredCompanyName" name="enteredCompanyName" value="@Model.UserEnteredCorporateName" />
+            <input type="hidden" id="enteredCourse" name="enteredCourse" value="@Model.UserEnteredCourse" />
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script src="~/js/AdminTaskStatus.js" asp-append-version="true" charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js?" asp-append-version="true"></script>
+}

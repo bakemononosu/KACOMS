@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+
+<div id="loading-screen" class="loading-screen">
+    <div class="loader"></div>
+</div>
+<div class="sub-container" id="sub-container">
+    <form method="POST"></form>
+    <div class="col">
+        <div id="upFileWrap">
+            <div id="inputFile">
+                <!-- ドラッグ&ドロップエリア -->
+                <p id="dropArea">ここにCSVファイルをドロップしてください<br><br>または</p><br>
+                <!-- 通常のinput[type=file] -->
+                <div id="inputFileWrap">
+                    <input type="file" accept=".csv" title="" name="uploadFile" id="uploadFile" enctype="multipart/form-data">
+                    <div id="btnInputFile">
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('uploadFile').click();">ファイル選択</button>
+                        <i class="bi bi-upload btn-outline-dark" onclick="fetchData()"></i>
+                        <i class="bi bi-eraser-fill btn-outline-dark" onclick="clearFileData()"></i>
+                    </div>
+                </div>
+                <div id="selectedFileName">選択されていません</div>
+            </div>
+            <div class="container-b">
+                <div class="button-container">
+                    <button class="btn btn-primary btn-sm btn-c6" id="sbmBtn" onclick="bulkUpload()" disabled>更新</button>
+                    <input type="hidden" name="tempFileName" id="tempFileName" />
+                    <input type="hidden" name="controllerName" id="controllerName" value="@ViewBag.ControllerName" />
+                </div>
+            </div>
+        </div>
+        @if (ViewData["uploadResult"] != null)
+        {
+            <hr>
+            <h5>ファイルアップロード結果　：　@ViewData["uploadResult"]</h5>
+        }
+        <div id="error-table" class="table-responsive" style="display: none;">
+            <div class="table-container">
+                <table class="table table-bordered" id="error-table-content">
+                    <thead>
+                        <tr>
+                            <th>行番号</th>
+                            <th>エラーメッセージ</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/BulkUpload.js" enctype="multipart/form-data" accept=".csv, .CSV" required charset="shift_jis"></script>
+    <script src="~/js/ModalDialog.js?" asp-append-version="true"></script>
+}

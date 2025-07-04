@@ -1,0 +1,192 @@
+﻿body {
+    --th-format-display: inline;
+    --th-score-display: inline;
+}
+
+row {
+    height: 38px;
+}
+
+.fieldset {
+    border: solid 1px #d0d0d0;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px; 
+}
+
+.text-middle {
+    line-height: 2.3rem;
+}
+
+.drop-area {
+    border: dotted 2px #000;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+}
+
+.exam-list, .modal-q-cat-list {
+    overflow-y: auto;
+    height: 400px;
+    padding: 0px;
+    background-color: lightgray;
+    margin: 0px 0px 0px 12px;
+}
+
+.span-icon {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+.exam-list table th,
+.modal-q-cat-list table th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+}
+
+.exam-list table th::before,
+.modal-q-cat-list table th::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0px;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+    background-color: white;
+    z-index: -1;
+}
+
+table, table th, table td {
+    border:solid 1px #d0d0d0;
+}
+
+h6 {
+    margin:0px;
+}
+
+tr {
+    height: 2.5rem;
+}
+
+th {
+    text-align: center;
+}
+
+/*
+th :nth-child(2n+1) {
+    border-left: solid 1px #d0d0d0;
+}
+*/
+
+/** テーブル：ヘッダ(編集) */
+.th-edit {
+    width:10%;
+    min-width: 50px;
+}
+
+/** テーブル：ヘッダ(問題識別番号) */
+/** テーブル：データ(問題識別番号) */
+.th-q-no, .td-q-no {
+    width: 15%;
+    min-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/** テーブル：ヘッダ(タイトル) */
+/** テーブル：データ(タイトル) */
+.th-title, .td-title {
+    width: 40%;
+    min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/** テーブル：ヘッダ(出題形式) */
+.th-format {
+    width: 15%;
+    min-width: 65px;
+}
+
+/** テーブル：ヘッダ(難易度) */
+.th-level {
+    width: 10%;
+    min-width: 50px;
+}
+
+/** テーブル：ヘッダ(点数) */
+.th-score {
+    width: 10%;
+    min-width: 50px;
+}
+
+/** テーブル：データ(編集･出題形式･難易度) */
+.td-edit, .td-format, .td-level {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/** テーブル：データ(点数) */
+.td-score {
+    text-align: right;
+    padding-right: 5px;
+}
+
+/**
+ * 問題カタログリスト
+ */
+.modal-q-cat-list {
+    overflow-y: auto;
+    height: 400px;
+    padding-right: 0px;
+}
+
+.th-ans, th-exp {
+    width:45%;
+}
+
+.th-collect {
+    width: 10%;
+}
+
+#modal_q_reference .modal-body {
+    height: 500px;
+    overflow-y: auto;
+}
+
+@media screen and ( max-width : 575px ) {
+    body {
+        --th-score-display: none;
+    }
+}
+
+@media screen and ( max-width : 719px ) {
+    body {
+        --th-format-display: none;
+    }
+}

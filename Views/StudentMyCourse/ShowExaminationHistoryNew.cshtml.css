@@ -1,0 +1,61 @@
+﻿body {
+}
+body {
+}
+
+.tab-content {
+    border: 1px solid #e0e0e0;
+}
+
+.test-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 600px;
+    border: solid 1px #e0e0e0;
+    overflow-y: auto;
+}
+
+.test-no {
+    flex-shrink: 0;
+    width: 80%;
+    height: 1.5rem;
+    line-height: 1.4rem;
+    margin-top: 2px;
+    border: solid 1px gray;
+    border-radius: 0.5rem;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+    .test-no:hover {
+        cursor: pointer;
+        background-color: deepskyblue;
+    }
+
+.test-no-selected {
+    border: solid 2px deepskyblue;
+}
+
+
+.test-no-answered {
+    background-color: lightgreen;
+}
+
+.test-no-noanswered {
+    background-color: #f0f0f0;
+}
+
+.status-icon {
+    color: red;
+    font-size: 1.5rem;
+}
+
+.explaine-text {
+    color: red;
+}
+
+.white-space-prewrap {
+    white-space: pre-wrap;
+}

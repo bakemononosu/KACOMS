@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_BaseLayout";
+}
+@using ElsWebApp.Services
+@model AdminCoursesViewModel
+
+
+<div class="sub-container" id="sub-container">
+    <div class="content-main">
+        <div class="searchArea">
+            <form method="POST" asp-controller="AdminCourses" asp-action="ShowCourses">
+                <div class="input-container">
+                    <label>講座名</label>
+                    <input class="form-control" type="text" id="courseName" name="courseName" value="@Model.SearchWord">
+                    <button class="btn btn-primary btn-c6">検索</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid-title mt-3 mb-1">
+            <h6 class="mr-2">講座一覧</h6>
+            <span class="span-icon" onclick="handleShowCourseChapters()">
+                <i class="bi bi-plus-square-fill"></i>
+            </span>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>編集</th>
+                        <th>講座名</th>
+                        <th>公開/非公開</th>
+                        <th>公開期間</th>
+                        <th>セクション数</th>
+                        <th>学習時間</th>
+                        <th>公開</th>
+                        <th>優先参照先</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.AdminCourseList != null)
+                        @foreach (var course in Model.AdminCourseList)
+                        {
+                            <tr id="tr_@course.CourseId">
+                                <td class="txt-center w-per5">
+                                    <span class="span-icon @(course.IsExistsUserCourse == 1 ? "disabled" : "")"
+                                    @(course.IsExistsUserCourse == 1 ? "" : $"onclick=handleDeleteCourse('{course.CourseId}')")>
+                                        <i class="bi bi-trash3"></i>
+                                    </span>
+                                    <span class="span-icon" onclick="handleShowCourseChapters(`@course.CourseId`)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </span>
+                                </td>
+                                <td>@course.CourseName</td>
+                                <td class="txt-center w-per10" id="isPublic_@course.CourseId">
+                                    @if (course.IsPublic == 1)
+                                    {
+                                        <span class="badge rounded-pill bg-warning md-icon">公開中</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-secondary md-icon">非公開</span>
+                                    }
+                                </td>
+                                <td class="txt-center w-per20">@course.PublicPeriod</td>
+                                <td class="txt-right w-per5">@course.ChapterCnt</td>
+                                <td class="txt-right w-per5">@course.StudyTime</td>
+                                <td class="txt-center w-per5" id="pubFlg">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="publicFlg_@course.CourseId" name="publicFlg" @(course.PublicFlg == 1 ? "checked" : "") onchange="changeLineData(`@course.CourseId`, `publicFlg_`, ``, @course.IsInAvalablePeriod)" />
+                                    </div>
+                                </td>
+                                <td class="w-120-per10">
+                                    <select class="form-select" id="primaryReference_@course.CourseId" onchange="changeLineData(`@course.CourseId`, `primaryReference_`, `@ConstService.SystemCode.SYSCODE_CLASS_PRIMARY`, @course.IsInAvalablePeriod)">
+                                        @foreach (var item in Model.PrimaryReferenceList)
+                                        {
+                                            <option value="@item.Value" selected="@((item.Value == course.PrimaryReference) ? "selected" : null)">@item.Text</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/ModalDialog.js" asp-append-version="true"></script>
+    <script src="~/js/ShowCourses.js" asp-append-version="true" charset="shift_jis"></script>
+}

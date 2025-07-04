@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+
+<div class="sub-container" id="sub-container">
+    <partial name="~/Views/AccountInfo/ShowCommonAccount.cshtml" />
+</div>
+
+<form method="POST" asp-controller="AccountInfo" asp-action="SearchAction" id="showData">
+    <input type="hidden" id="email" name="email" value="@Model.UserEnteredEmail">
+    <input type="hidden" id="userName" name="userName" value="@Model.UserEnteredName">
+    <input type="hidden" id="employeeNo" name="employeeNo" value="@Model.UserEnteredEmployeeNumber">
+    <input type="hidden" id="departmentName" name="departmentName" value="@Model.UserEnteredDepartment">
+    <input type="hidden" id="companyName" name="companyName" value="@Model.UserEnteredCorporateName">
+    <input type="hidden" id="remarks1" name="remarks1" value="@Model.UserEnteredNotes1">
+    <input type="hidden" id="remarks2" name="remarks2" value="@Model.UserEnteredNotes2">
+    <input type="hidden" id="userId" name="userId" value="">
+</form>
+
+@section scripts {
+    <script src="~/js/CsvDownload.js" asp-append-version="true" charset="shift_jis"></script> @*CSVDownload用JS*@
+    <script src="~/js/AccountInfo.js" asp-append-version="true" charset="shift_jis"></script> @*アカウント情報更新用JS*@
+    <script src="~/js/ModalDialog.js" asp-append-version="true" charset="shift_jis"></script> @*メッセージボックス用JS*@
+}
