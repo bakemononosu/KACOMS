@@ -91,6 +91,8 @@ namespace ElsWebApp.Models
         public MovieContents? MovieContents { get; set; }
         // 現在の学習順序
         public int CurrentOrderNo { get; set; } = 0;
+        // ブックマーク
+        public int? BookmarkSeconds { get; set; }
 
     }
 

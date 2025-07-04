@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ElsWebApp.Models.Entitiy;
 
 namespace ElsWebApp.Data
 {
@@ -9,5 +10,7 @@ namespace ElsWebApp.Data
             : base(options)
         {
         }
+
+        public DbSet<UserChapter> UserChapters { get; set; }
     }
 }
