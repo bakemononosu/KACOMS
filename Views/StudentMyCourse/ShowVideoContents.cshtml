@@ -16,6 +16,7 @@
                 <div class="action">
                     <button type="button" class="btn btn-outline-info" onclick="ShowPreviousNextChapter('previous')" @(Model.ShowVideoContent.IsFirstContent ? "disabled" : "")>前のセクション</button>
                     <button type="button" class="btn btn-outline-info" onclick="ShowPreviousNextChapter('next')" @(Model.ShowVideoContent.IsLastContent ? "disabled" : "")>次のセクション</button>
+                    <button type="button" class="btn btn-outline-success" id="saveBookmarkBtn">しおりを挿む</button>
                 </div>
             </div>
             <input type="hidden" id="userId" name="userId" value="@Model.ShowVideoContent?.UserId">
@@ -23,6 +24,7 @@
             <input type="hidden" id="chapterId" name="chapterId" value="@Model.ShowVideoContent?.ChapterId">
             <input type="hidden" id="orderNo" name="orderNo" value="@Model.ShowVideoContent?.CurrentOrderNo">
             <input type="hidden" id="contentsPath" value="@Model.ShowVideoContent?.MovieContents.ContentsPath">
+            <input type="hidden" id="bookmarkTime" value="@Model.ShowVideoContent?.BookmarkSeconds" />
         }
         else
         {
@@ -46,4 +48,82 @@
             }
         }
     </script>
+
+    <script>
+        const contentsPath = $('#contentsPath').val();
+        const bookmarkTime = parseFloat($('#bookmarkTime').val() || "0");
+        const userId = $('#userId').val();
+        const courseId = $('#courseId').val();
+        const chapterId = $('#chapterId').val();
+
+        let bookmarkSaved = false;
+
+        if (contentsPath && video) {
+            if (!isIos) {
+                loadVideo(video, contentsPath);
+            } else {
+                $('#videotag').attr('src', contentsPath);
+            }
+
+            // 再生位置の復元
+            video.addEventListener('loadedmetadata', function () {
+                $.get("/Bookmark/Get", {
+                    userId: userId,
+                    courseId: courseId,
+                    chapterId: chapterId
+                }).done(function (data) {
+                    if (!isNaN(data) && data > 0 && data < video.duration) {
+                        video.currentTime = parseFloat(data);
+                        console.log("しおりから再生位置を復元: " + data + "秒");
+                    }
+                });
+            });
+
+            // 動画最後まで見たら、しおり削除（修了）
+            video.addEventListener('ended', function () {
+                $.ajax({
+                    url: '/Bookmark/Clear',
+                    method: 'POST',
+                    data: {
+                        userId: userId,
+                        courseId: courseId,
+                        chapterId: chapterId
+                    }
+                });
+            });
+        }
+
+        // 「しおりを挿む」ボタンを押したとき
+        $('#saveBookmarkBtn').on('click', function () {
+            if (video && !isNaN(video.currentTime) && video.duration) {
+                const currentTime = Math.floor(video.currentTime);
+                const progressRatio = currentTime / video.duration;
+
+                if (progressRatio >= 0.8) {
+                    $.ajax({
+                        url: '/Bookmark/Save',
+                        method: 'POST',
+                        data: {
+                            userId: userId,
+                            courseId: courseId,
+                            chapterId: chapterId,
+                            bookmarkSeconds: currentTime
+                        }
+                    }).done(function () {
+                        console.log(`しおりを ${currentTime} 秒に保存しました`);
+                        alert("しおりを保存しました！");
+                    }).fail(function () {
+                        console.warn("しおり保存に失敗しました");
+                        alert("しおり保存に失敗しました");
+                    });
+                } else {
+                    alert("動画の80%以上を視聴しないとしおりは保存できません。");
+                    console.warn(`視聴率は ${(progressRatio * 100).toFixed(1)}% です`);
+                }
+            }
+        });
+
+
+    </script>
+
 }

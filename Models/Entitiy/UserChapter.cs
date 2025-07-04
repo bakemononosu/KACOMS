@@ -30,6 +30,9 @@ namespace ElsWebApp.Models.Entitiy
         [Column("EndDatetime")]
         public DateTime? EndDatetime { get; set; }
 
+        [Column("BookmarkSeconds")]
+        public int? BookmarkSeconds { get; set; }
+
         [Column("UpdatedAt")]
         public DateTime? UpdatedAt { get; set; }
 

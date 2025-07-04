@@ -239,3 +239,7 @@
 2025-07-04 09:43:10.3666 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
 2025-07-04 09:43:10.3666 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\HAL4\IA4C\20250520_HAL様用講義資料\e_learning\ElsWebApp\NLog.config
 2025-07-04 09:43:10.3847 Info Configuration initialized.
+2025-07-05 00:23:03.5227 Info Registered target NLog.Targets.Wrappers.AsyncTargetWrapper(Name=ownFile-web)
+2025-07-05 00:23:03.6534 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-07-05 00:23:03.6811 Info Validating config: TargetNames=ownFile-web, ConfigItems=27, FilePath=C:\KACOMS\KACOMS\NLog.config
+2025-07-05 00:23:03.7665 Info Configuration initialized.
